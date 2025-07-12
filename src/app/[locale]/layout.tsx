@@ -19,7 +19,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={dir} suppressHydrationWarning>
-      <body className="antialiased dark:bg-[#020817] dark:text-gray-300">
+      <body className="antialiased dark:bg-[#020817] dark:text-gray-300 overflow-x-hidden">
         <ThemeProvider attribute="class" defaultTheme="light">
           <TooltipProvider delayDuration={0}>
             <LogoNavbar />

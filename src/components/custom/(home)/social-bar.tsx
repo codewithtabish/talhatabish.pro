@@ -51,9 +51,10 @@ export function SocialBar() {
     <TooltipProvider>
       <div
         className={cn(
+          "hidden lg:flex", // ✅ Only show on lg and up
           "fixed left-1 top-1/2 -translate-y-1/2 z-40",
-          "  p-2 ",
-          "flex flex-col items-center"
+          "p-2",
+          "flex-col items-center"
         )}
         style={{ userSelect: "none" }}
       >
