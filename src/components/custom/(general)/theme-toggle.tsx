@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { Sun, Moon, Clock } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { themeToggleContent } from "@/utils/language-data/theme-toggle";
 
@@ -11,28 +11,24 @@ type ThemeToggleIconToggleProps = {
 
 export default function ThemeToggleIconToggle({ locale = "en" }: ThemeToggleIconToggleProps) {
   const { resolvedTheme, theme, setTheme } = useTheme();
+  // Get translations for the selected language, fallback to English
 //   @ts-ignore
   const t = themeToggleContent[locale] || themeToggleContent.en;
 
-  // For "system" mode, show clock icon
+  // Show sun or moon icon
   const getIcon = () => {
-    if (theme === "system") return <Clock className="size-5 " />;
-    if (resolvedTheme === "dark") return <Moon className="size-5 " />;
+    if (resolvedTheme === "dark") return <Moon className="size-5" />;
     return <Sun className="size-5 text-yellow-500" />;
   };
 
-  // For toggle: light -> dark -> system -> light ...
+  // Toggle only between light and dark
   const handleToggle = () => {
-    if (theme === "light") setTheme("dark");
-    else if (theme === "dark") setTheme("system");
-    else setTheme("light");
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
-  // Tooltip text based on next mode
+  // Tooltip text based on next mode, in selected language
   const getNextModeLabel = () => {
-    if (theme === "light") return t.dark;
-    if (theme === "dark") return t.system;
-    return t.light;
+    return theme === "light" ? t.dark : t.light;
   };
 
   return (
@@ -46,26 +42,17 @@ export default function ThemeToggleIconToggle({ locale = "en" }: ThemeToggleIcon
           title={t.toggle}
           onClick={handleToggle}
           onKeyDown={e => (e.key === " " || e.key === "Enter") && handleToggle()}
-        //   className={`
-        //     // size-12 flex items-center justify-center rounded-full
-        //     // transition-colors duration-200
-        //     cursor-pointer select-none
-        //     // hover:bg-accent/60
-        //     // focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none
-        //     // border border-border
-        //     // bg-background
-        //     // shadow
-        //   `}
+          className="cursor-pointer select-none"
         >
           {getIcon()}
         </div>
       </TooltipTrigger>
-      <TooltipContent>
+      <>
         <span>
-          {t.toggle} <br />
-          <span className="">{getNextModeLabel()}</span>
+          {/* {t.toggle} <br /> */}
+          {/* <span>{getNextModeLabel()}</span> */}
         </span>
-      </TooltipContent>
+      </>
     </Tooltip>
   );
 }

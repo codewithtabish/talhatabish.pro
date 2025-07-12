@@ -1,26 +1,36 @@
-import dynamic from "next/dynamic";
 import { SocialBar } from "@/components/custom/(home)/social-bar";
-import Header from "@/components/custom/header";
-import HeroDataSection from "@/components/custom/hero-data";
-import HeroInfo from "@/components/custom/hero-info";
 import ConfettiClientWrapper from "@/components/custom/(home)/particle-wrapper";
+import HeroSection from "@/components/custom/(home)/hero-section";
+import AboutCombined from "@/components/custom/(home)/hero-about-combined";
+import HeroVideo from "@/components/custom/(home)/hero-video";
+import EducationSection from "@/components/custom/(home)/education-section";
+import SkillsSection from "@/components/custom/(home)/skill-section";
+import { IconCloudDemo } from "@/components/custom/(home)/skill-icon-list";
+import Feedbacks from "@/components/custom/(home)/feedbacks";
 
+// 👇 Notice params is a Promise now
+export default async function LocalePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  // ✅ Await the params here
+  const { locale } = await params;
 
-
-
-export default function LocalePage({ params }: { params: { locale: string } }) {
   return (
-    <main className="container md:max-w-4xl mx-auto ">
+    <main>
       <SocialBar />
-            <ConfettiClientWrapper />
-
-            {/* <ConfettiClientWrapper /> */}
-
-      {/* <Confetti manualstart /> or remove manualstart to auto-fire on mount */}
-      {/* <ConfettiButton>Celebrate!</ConfettiButton> */}
-      {/* <HeroDataSection locale={params.locale}/> */}
-      {/* <ConfettiOverlay/> */}
-      {/* <HeroInfo locale={params.locale} /> */}
+      <ConfettiClientWrapper />
+      <HeroSection lang={locale} />
+      <AboutCombined locale={locale} />
+      <HeroVideo locale={locale} />
+      {/* @ts-ignores */}
+      
+      <EducationSection locale={locale} />
+      {/* @ts-ignore */}
+      <SkillsSection locale={locale}/>
+      <IconCloudDemo/>
+      <Feedbacks locale={locale}/>
     </main>
   );
 }

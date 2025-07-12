@@ -1,45 +1,32 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { getDirection } from "@/lib/loacalDirection";
 import LanguageSwitcher from "@/components/custom/language-switcher";
-import Header from "@/components/custom/header";
-import Footer from "@/components/custom/footer";
 import Navbar from "@/components/custom/(home)/navbar";
 import { ThemeProvider } from "next-themes";
-import { TooltipProvider } from "@/components/ui/tooltip"; // Adjust path if needed
+import { TooltipProvider } from "@/components/ui/tooltip";
+import LogoNavbar from "@/components/custom/(general)/logo-navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export default function LocaleLayout({
+// ✅ Make the function async and await `params`
+export default async function LocaleLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>; // 👈 Promise version
 }) {
-  const { locale } = params;
+  const { locale } = await params; // ✅ Awaiting params
   const dir = getDirection(locale);
 
   return (
     <html lang={locale} dir={dir} suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-[#020817]`}>
+      <body className="antialiased dark:bg-[#020817] dark:text-gray-300">
         <ThemeProvider attribute="class" defaultTheme="light">
           <TooltipProvider delayDuration={0}>
-            <div className="my-20">
-              <LanguageSwitcher />
-            </div>
-            {/* <Header locale={locale} /> */}
-            <main className="pt-16 min-h-screen">{children}</main>
+            <LogoNavbar />
+            <main className="flex w-full max-w-screen-md md:max-w-3xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto flex-col min-h-[100dvh] px-4 sm:px-6 md:px-8">
+              {children}
+            </main>
             <Navbar locale={locale} />
-            {/* <Footer locale={locale} /> */}
           </TooltipProvider>
         </ThemeProvider>
       </body>

@@ -41,7 +41,7 @@ export default function LanguageSwitcher() {
           <Button
             size="icon"
             variant="ghost"
-            className="rounded-full border border-muted bg-background shadow-sm hover:bg-muted/50 transition-colors p-2"
+            className="rounded-full cursor-pointer border border-muted bg-background shadow-sm hover:bg-muted/50 transition-colors p-2"
             aria-label="Change language"
           >
             <Globe size={18} className="cursor-pointer" />

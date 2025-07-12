@@ -51,7 +51,7 @@ export function SocialBar() {
     <TooltipProvider>
       <div
         className={cn(
-          "fixed left-4 top-1/2 -translate-y-1/2 z-40",
+          "fixed left-1 top-1/2 -translate-y-1/2 z-40",
           "  p-2 ",
           "flex flex-col items-center"
         )}
