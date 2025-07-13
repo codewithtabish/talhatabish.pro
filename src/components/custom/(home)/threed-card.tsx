@@ -43,7 +43,7 @@ export default function ThreeDCard({content}:{content:any}) {
     <div className="flex items-center justify-center  dark:border-[1px] dark:rounded-lg">
       <div
         ref={cardRef}
-        className="w-[240px] h-[300px]  rounded-xl shadow-xl overflow-hidden flex flex-col justify-between transition-transform duration-300 ease-out"
+        className="md:w-[240px] w-full h-[300px]  rounded-xl shadow-xl overflow-hidden flex flex-col justify-between transition-transform duration-300 ease-out"
       >
         <img
         // src='/gallery/hero-one.jpeg'

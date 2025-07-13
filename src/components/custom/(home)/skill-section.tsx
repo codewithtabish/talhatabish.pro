@@ -36,26 +36,25 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ locale = "en" }) => {
   const skillEntries = Object.entries(skills);
 
   return (
-    <section id="skills" className="w-full py-20 px-4">
+    <section id="skills" className="">
       <div className="max-w-6xl mx-auto text-center">
         <p className="text-sm text-muted-foreground mb-2">{section.subheading}</p>
         <h2 className="text-3xl md:text-4xl font-bold mb-6">{section.heading}</h2>
 
         <div className="mb-10 space-y-2 max-w-2xl mx-auto">
           {section.desc.map((line, index) => (
-            <p key={index} className="text-muted-foreground">
-              {line}
-            </p>
+            <p key={index} className="text-muted-foreground">{line}</p>
           ))}
         </div>
 
-        <AnimatedList className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <AnimatedList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillEntries.map(([key, skill], index) => (
             <div
               key={key}
               className={cn(
-                "relative mx-auto min-h-fit w-full max-w-[400px] overflow-hidden rounded-2xl p-5 transition-all duration-200 ease-in-out hover:scale-[103%]",
-                "bg-white dark:bg-muted border border-border shadow-md"
+                "w-full rounded-2xl  md:p-5 p-5 transition-all duration-200 ease-in-out hover:scale-[103%]",
+                " border border-border shadow-md",
+                ""
               )}
             >
               <div className="flex items-center gap-3 mb-3">

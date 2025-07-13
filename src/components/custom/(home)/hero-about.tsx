@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 function AboutSection({ locale = "en" }) {
   // @ts-ignore
   return (
-    <div className="leading-relaxed md:leading-loose text-base text-gray-700">
+    <div className="leading-relaxed md:leading-loose text-base text-gray-700 text-justify">
       <ReactMarkdown>{
         // @ts-ignore
       heroAbout[locale].content}</ReactMarkdown>
