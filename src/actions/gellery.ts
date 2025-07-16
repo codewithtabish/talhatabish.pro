@@ -47,7 +47,7 @@ export async function getAllGalleryItems(): Promise<GalleryItem[]> {
 
     // Fetch from Strapi
     const res = await fetch(`http://localhost:1337/api/gelleries?populate=*`,{
-      next:{revalidate:3600,tags:['gallery']},
+      next:{revalidate:1113600,tags:['gallery']},
       
     });
     if (!res.ok) {

@@ -1,5 +1,6 @@
-'use client';
+"use client";
 
+import { usePathname } from "next/navigation";
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -19,16 +20,27 @@ type NavbarProps = {
 };
 
 export default function Navbar({ locale }: NavbarProps) {
+  const pathname = usePathname();
+
+  // Show only on home: "/" or "/en", "/ur", etc.
+  // Remove trailing slash if present
+  const cleanPath = pathname.replace(/\/$/, "");
+  const isHome =
+    cleanPath === "" ||
+    cleanPath === "/" ||
+    cleanPath === `/${locale}`;
+
+  if (!isHome) return null;
+
   const navItems = (navbarContent as any)[locale] || navbarContent.en;
 
   return (
     <div className="hidden lg:block fixed inset-x-0 bottom-6 z-30 pointer-events-none">
       {/* Background blur layer */}
-      <div className="fixed bottom-0 inset-x-0 h-16 w-full bg-background backdrop-blur-lg dark:bg-background/80" />
+      <div className="fixed bottom-0 inset-x-0 h-16 w-full bg-background/80 backdrop-blur-lg dark:bg-background/80" />
 
-      {/* Container with glow */}
+      {/* Centered container with animated border */}
       <div className="relative mx-auto w-[320px] rounded-full">
-        {/* Rounded animated glowing border */}
         <BorderBeam
           className="absolute inset-0 z-40 rounded-full"
           borderWidth={2}
@@ -46,7 +58,10 @@ export default function Navbar({ locale }: NavbarProps) {
                 <TooltipTrigger asChild>
                   <Link
                     href={item.href}
-                    className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "w-10 h-10")}
+                    className={cn(
+                      buttonVariants({ variant: "ghost", size: "icon" }),
+                      "w-10 h-10"
+                    )}
                   >
                     <item.icon className="w-4 h-4" />
                   </Link>

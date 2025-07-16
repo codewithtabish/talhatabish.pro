@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils";
 import { socialLinks } from "@/utils/language-data/social-links";
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const icons = {
   facebook: Facebook,
@@ -46,15 +47,27 @@ const iconVariants = {
 export function SocialBar() {
   const pathname = usePathname();
   const currentLocale = pathname.split("/")[1] || "en";
+  const [hide, setHide] = useState(false);
+
+  useEffect(() => {
+    function onScroll() {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const windowHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      // If user is within 120px of the bottom, hide the bar
+      setHide(scrollY + windowHeight >= docHeight - 120);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <TooltipProvider>
       <div
         className={cn(
-          "hidden lg:flex", // ✅ Only show on lg and up
-          "fixed left-1 top-1/2 -translate-y-1/2 z-40",
-          "p-2",
-          "flex-col items-center"
+          "hidden lg:flex fixed left-1 top-1/2 -translate-y-1/2 z-40 p-2 flex-col items-center transition-opacity duration-300",
+          hide ? "opacity-0 pointer-events-none" : "opacity-100"
         )}
         style={{ userSelect: "none" }}
       >
