@@ -1,11 +1,11 @@
 import AboutSection from "@/components/mvpblocks/about-us-1";
 
-export default function AboutPage({
+export default async function AboutPage({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = params;
+  const { locale } = await params;
 
   return (
     <main className="w-full min-h-screen flex justify-center bg-background">
