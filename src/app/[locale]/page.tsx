@@ -7,6 +7,8 @@ import EducationSection from "@/components/custom/(home)/education-section";
 import SkillsSection from "@/components/custom/(home)/skill-section";
 import { IconCloudDemo } from "@/components/custom/(home)/skill-icon-list";
 import Feedbacks from "@/components/custom/(home)/feedbacks";
+import GallerySection from "@/components/custom/(home)/gallery-section";
+import GalleryWrapper from "@/components/custom/(home)/gallery-wrapper";
 
 // 👇 Notice params is a Promise now
 export default async function LocalePage({
@@ -30,6 +32,9 @@ export default async function LocalePage({
       {/* @ts-ignore */}
       <SkillsSection locale={locale}/>
       <IconCloudDemo/>
+      {/* @ts-ignore */}
+      <GallerySection locale={locale}/>
+      <GalleryWrapper/>
       <Feedbacks locale={locale}/>
     </main>
   );

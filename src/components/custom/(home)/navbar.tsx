@@ -1,3 +1,5 @@
+'use client';
+
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -10,57 +12,66 @@ import { cn } from "@/lib/utils";
 import { navbarContent } from "@/utils/language-data/navbar";
 import Link from "next/link";
 import ThemeToggle from "../(general)/theme-toggle";
+import { BorderBeam } from "@/components/magicui/border-beam";
 
 type NavbarProps = {
   locale: string;
 };
 
 export default function Navbar({ locale }: NavbarProps) {
-  // Fallback to English if locale not found
-  // @ts-ignore
-  const navItems = navbarContent[locale] || navbarContent.en;
+  const navItems = (navbarContent as any)[locale] || navbarContent.en;
 
   return (
-    <div className="hidden lg:block pointer-events-none fixed inset-x-0 bottom-6 z-30 mx-auto mb-4">
-      {/* Background blur effect */}
-      <div className="fixed bottom-0 inset-x-0 h-16 w-full bg-background to-transparent backdrop-blur-lg [-webkit-mask-image:linear-gradient(to_top,black,transparent)] dark:bg-background" />
-      
-      <Dock className="z-50 pointer-events-auto relative mx-auto flex min-h-full h-full items-center px-1 bg-background [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)] transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]">
-        {navItems.map((item: any) => (
-          <DockIcon key={item.href}>
+    <div className="hidden lg:block fixed inset-x-0 bottom-6 z-30 pointer-events-none">
+      {/* Background blur layer */}
+      <div className="fixed bottom-0 inset-x-0 h-16 w-full bg-background backdrop-blur-lg dark:bg-background/80" />
+
+      {/* Container with glow */}
+      <div className="relative mx-auto w-[320px] rounded-full">
+        {/* Rounded animated glowing border */}
+        <BorderBeam
+          className="absolute inset-0 z-40 rounded-full"
+          borderWidth={2}
+          duration={6}
+          colorFrom="#ffaa40"
+          colorTo="#9c40ff"
+          size={150}
+        />
+
+        {/* Dock navbar */}
+        <Dock className="relative z-50 pointer-events-auto flex items-center h-14 bg-background rounded-full px-2 shadow-md dark:border dark:border-white/10">
+          {navItems.map((item: any) => (
+            <DockIcon key={item.href}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link
+                    href={item.href}
+                    className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "w-10 h-10")}
+                  >
+                    <item.icon className="w-4 h-4" />
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{item.label}</p>
+                </TooltipContent>
+              </Tooltip>
+            </DockIcon>
+          ))}
+
+          <Separator orientation="vertical" className="h-full mx-2" />
+
+          <DockIcon>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Link
-                  href={item.href}
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "size-12"
-                  )}
-                >
-                  <item.icon className="size-4" />
-                </Link>
+                <ThemeToggle />
               </TooltipTrigger>
               <TooltipContent>
-                <p>{item.label}</p>
+                <p>Theme</p>
               </TooltipContent>
             </Tooltip>
           </DockIcon>
-        ))}
-
-        <Separator orientation="vertical" className="h-full" />
-
-        {/* Theme Toggle Icon */}
-        <DockIcon>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <ThemeToggle />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Theme</p>
-            </TooltipContent>
-          </Tooltip>
-        </DockIcon>
-      </Dock>
+        </Dock>
+      </div>
     </div>
   );
 }
