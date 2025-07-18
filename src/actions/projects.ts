@@ -27,21 +27,21 @@ export async function getProjects(
     return { data: [], error: 'Strapi base URL is not set in environment variables.' };
   }
 
-  // 1. Try reading from Redis cache
+  const cacheKey = RedisKeys.withLocale(RedisKeys.ALL_PROJECTS, locale);
+
   try {
-    const cached = await redis.get(RedisKeys.ALL_PROJECTS);
+    const cached = await redis.get(cacheKey);
     if (cached) {
-      console.log('[Redis] Projects returned from cache');
+      console.log(`[Redis] Projects returned from cache for locale: ${locale}`);
       return { data: cached as Project[] };
     }
   } catch (cacheErr) {
     console.error('[Redis] Cache read error', cacheErr);
   }
 
-  // 2. Fetch from Strapi
   const url = `${STRAPI_URL}/projects?locale=${locale}`;
   try {
-    const res = await fetch(url, { next: { revalidate: 60 } });
+    const res = await fetch(url, { next: { revalidate: 3600 } });
     if (!res.ok) {
       const errorText = await res.text();
       return { data: [], error: `Strapi error: ${res.status} ${errorText}` };
@@ -67,10 +67,9 @@ export async function getProjects(
       isPublic: !!item.githubUrl,
     }));
 
-    // 3. Save to Redis (no expiration)
     try {
-      await redis.set(RedisKeys.ALL_PROJECTS, data);
-      console.log('[Redis] Projects cached');
+      await redis.set(cacheKey, data);
+      console.log(`[Redis] Projects cached for locale: ${locale}`);
     } catch (setErr) {
       console.error('[Redis] Cache set error', setErr);
     }
@@ -80,3 +79,4 @@ export async function getProjects(
     return { data: [], error: `Network or unexpected error: ${err.message}` };
   }
 }
+``

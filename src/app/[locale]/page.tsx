@@ -52,11 +52,11 @@ export default async function LocalePage({
         <EducationSection locale={locale} />
         {/* @ts-ignore */}
         <SkillsSection locale={locale} />
+        <TrustedByCompanies/>
         {/* <IconCloudDemo /> */}
         {/* @ts-ignore */}
         <GallerySection locale={locale} />
         <GalleryWrapper />
-        <TrustedByCompanies/>
 
         {/*  */}
         <HomeProjectSection locale={locale}/>
