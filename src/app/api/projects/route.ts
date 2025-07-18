@@ -7,6 +7,7 @@ export async function POST(req: NextRequest) {
 
   // Step 1: Invalidate the taga
   revalidateTag('projects');
+  revalidateTag('singleProject');
 
   // Step 2: Warm the cache with English locale
   const { data, error } = await getProjects('en');
