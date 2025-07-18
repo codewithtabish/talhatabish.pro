@@ -1,5 +1,7 @@
-// app/actions/getProjects.ts
 'use server';
+
+import { redis } from '@/lib/redis';
+import { RedisKeys } from '@/utils/redis-key';
 
 export type Project = {
   id: number;
@@ -12,8 +14,8 @@ export type Project = {
   githubUrl: string;
   techStacks: string;
   keywords: string;
-    isLive?: boolean;
-    isPublic?: boolean;
+  isLive?: boolean;
+  isPublic?: boolean;
 };
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_RENDER_URL || process.env.NEXT_PUBLIC_STRAPI_URL;
@@ -24,19 +26,32 @@ export async function getProjects(
   if (!STRAPI_URL) {
     return { data: [], error: 'Strapi base URL is not set in environment variables.' };
   }
+
+  // 1. Try reading from Redis cache
+  try {
+    const cached = await redis.get(RedisKeys.ALL_PROJECTS);
+    if (cached) {
+      console.log('[Redis] Projects returned from cache');
+      return { data: cached as Project[] };
+    }
+  } catch (cacheErr) {
+    console.error('[Redis] Cache read error', cacheErr);
+  }
+
+  // 2. Fetch from Strapi
   const url = `${STRAPI_URL}/projects?locale=${locale}`;
   try {
     const res = await fetch(url, { next: { revalidate: 60 } });
     if (!res.ok) {
-      // Strapi or HTTP error
       const errorText = await res.text();
       return { data: [], error: `Strapi error: ${res.status} ${errorText}` };
     }
+
     const json = await res.json();
     if (!json.data) {
       return { data: [], error: 'No data returned from Strapi.' };
     }
-    // Map and clean up data as needed
+
     const data: Project[] = json.data.map((item: any) => ({
       id: item.id,
       title: item.title?.trim() || '',
@@ -48,12 +63,20 @@ export async function getProjects(
       githubUrl: (item.githubUrl || '').trim(),
       techStacks: (item.techStacks || '').trim(),
       keywords: (item.keywords || '').trim(),
-      isLive: item.liveUrl ? true : false,
-      isPublic: item.githubUrl ? true : false,
+      isLive: !!item.liveUrl,
+      isPublic: !!item.githubUrl,
     }));
+
+    // 3. Save to Redis (no expiration)
+    try {
+      await redis.set(RedisKeys.ALL_PROJECTS, data);
+      console.log('[Redis] Projects cached');
+    } catch (setErr) {
+      console.error('[Redis] Cache set error', setErr);
+    }
+
     return { data };
   } catch (err: any) {
-    // Network or unexpected error
     return { data: [], error: `Network or unexpected error: ${err.message}` };
   }
 }

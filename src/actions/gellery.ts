@@ -1,5 +1,8 @@
 'use server';
 
+import { redis } from '@/lib/redis';
+import { RedisKeys } from '@/utils/redis-key';
+
 // Types
 export interface GalleryItem {
   id: number;
@@ -34,27 +37,34 @@ function handleError(error: unknown, context: string): never {
 
 export async function getAllGalleryItems(): Promise<GalleryItem[]> {
   try {
-    // Use env variable for the base URL
-    const baseUrl = process.env.NEXT_PUBLIC_RENDER_URL ! 
-    // Remove trailing slash if present
+    // 1. Try getting from Redis cache
+    const cached = await redis.get(RedisKeys.ALL_GALLERY_ITEMS);
+    if (cached) {
+      console.log('[Redis] Gallery items returned from cache');
+      return cached as GalleryItem[];
+    }
+
+    // 2. Fetch from Strapi
+    const baseUrl = process.env.NEXT_PUBLIC_RENDER_URL!;
     const normalizedBaseUrl = baseUrl.replace(/\/$/, '');
 
-    // Fetch from Strapi
     const res = await fetch(`${normalizedBaseUrl}/gelleries?populate=*`, {
-      cache: 'force-cache',
-      // next: { revalidate: 1113600, tags: ['gallery'] },
+      next: { revalidate: 3600, tags: ['gallery'] },
     });
+
     if (!res.ok) {
       const errorText = await res.text();
       throw new Error(`HTTP ${res.status}: ${errorText}`);
     }
 
     const json: StrapiResponse<GalleryItem> = await res.json();
-    console.log('The data of gallery is ',json)
+    const galleryItems = json.data;
 
-    // Cache it
+    // 3. Cache result in Redis (no expiration)
+    await redis.set(RedisKeys.ALL_GALLERY_ITEMS, galleryItems);
+    console.log('[Redis] Gallery items cached');
 
-    return json.data;
+    return galleryItems;
   } catch (error) {
     handleError(error, 'getAllGalleryItems');
   }
