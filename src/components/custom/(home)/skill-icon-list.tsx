@@ -7,10 +7,6 @@ const slugs = [
   "javascript",
   "dart",
   "java",
-  "java",
-  "java",
-  "java",
-  "java",
   "react",
   "flutter",
   "android",
@@ -19,39 +15,22 @@ const slugs = [
   "nodedotjs",
   "express",
   "nextdotjs",
-  "nextdotjs",
-  "nextdotjs",
-  "nextdotjs",
-  "nextdotjs",
-  "nextdotjs",
-  "nextdotjs",
-  "nextdotjs",
-  "nextdotjs",
-  "nextdotjs",
-  "nextdotjs",
-  "nextdotjs",
   "prisma",
+  "kotlin",
+  "android",
   "amazonaws",
   "postgresql",
   "firebase",
   "nginx",
-  "nginx",
-  "nginx",
-  "nginx",
-  "nginx",
-  "nginx",
-  "nginx",
-  "nginx",
+  "redis",
+  "c++",
+
   "vercel",
   "testinglibrary",
   "jest",
   "cypress",
   "docker",
-  "docker",
-  "docker",
-  "docker",
-  "docker",
-  "docker",
+ 
   "git",
   "jira",
   "github",
@@ -68,8 +47,9 @@ export function IconCloudDemo() {
   );
 
   return (
-    <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] xl:h-[650px] relative flex items-center justify-center overflow-hidden">
-      <IconCloud images={images} />
+        <div className="w-full px-12 relative flex items-center justify-center overflow-hidden">
+
+      <IconCloud images={images} key={images.join(",")}  />
     </div>
   );
 }

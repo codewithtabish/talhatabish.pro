@@ -14,6 +14,7 @@ import {
   Bot,
   Wrench,
 } from "lucide-react";
+import { IconCloudDemo } from "./skill-icon-list";
 
 interface SkillsSectionProps {
   locale?: keyof typeof skillsContent;
@@ -78,6 +79,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ locale = "en" }) => {
             </div>
           ))}
         </AnimatedList>
+      <IconCloudDemo/>
       </div>
     </section>
   );

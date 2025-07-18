@@ -13,6 +13,7 @@ import { VideoPlayer } from "@/components/ui/kibo-ui/video-player";
 import KiboHeroVideo from "@/components/custom/(home)/kibo-hero-video";
 import HomeBlogSection from "@/components/custom/(home)/blog/home-blog-section";
 import HomeProjectSection from "@/components/custom/(home)/(project)/project-section";
+import TrustedByCompanies from "@/components/mvpblocks/sparkles-logo";
 
 export default async function LocalePage({
   params,
@@ -51,13 +52,15 @@ export default async function LocalePage({
         <EducationSection locale={locale} />
         {/* @ts-ignore */}
         <SkillsSection locale={locale} />
-        <IconCloudDemo />
+        {/* <IconCloudDemo /> */}
         {/* @ts-ignore */}
         <GallerySection locale={locale} />
         <GalleryWrapper />
+        <TrustedByCompanies/>
+
         {/*  */}
+        <HomeProjectSection locale={locale}/>
         <HomeBlogSection locale={locale}/>
-        <HomeProjectSection/>
         <Feedbacks locale={locale} />
       </div>
     </main>

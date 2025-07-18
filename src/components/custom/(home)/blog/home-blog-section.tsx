@@ -5,6 +5,7 @@ const HomeBlogSection = ({locale='en'}:{locale:any}) => {
   return (
     <div>
         <BlogSectionHeader locale={locale}/>
+        
       
     </div>
   )

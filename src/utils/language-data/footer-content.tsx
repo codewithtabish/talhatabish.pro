@@ -14,7 +14,7 @@ const footerContent = {
       { label: "FAQ", href: "/faq" },
       { label: "Privacy Policy", href: "/privacy-policy" },
     ],
-    copyright: "© 2024 CodeWithTabish. All rights reserved.",
+    copyright: "© 2025 CodeWithTabish. All rights reserved.",
   },
   ur: {
     brand: "کوڈ ود طلحہ تابش",
@@ -29,7 +29,7 @@ const footerContent = {
       { label: "عمومی سوالات", href: "/faq" },
       { label: "پرائیویسی پالیسی", href: "/privacy-policy" },
     ],
-    copyright: "© 2024 کوڈ ود طلحہ تابش۔ جملہ حقوق محفوظ ہیں۔",
+    copyright: "© 2025 کوڈ ود طلحہ تابش۔ جملہ حقوق محفوظ ہیں۔",
   },
   ar: {
     brand: "كود ويذ طلحة تابش",
@@ -44,7 +44,7 @@ const footerContent = {
       { label: "الأسئلة الشائعة", href: "/faq" },
       { label: "سياسة الخصوصية", href: "/privacy-policy" },
     ],
-    copyright: "© 2024 كود ويذ طلحة تابش. جميع الحقوق محفوظة.",
+    copyright: "© 2025 كود ويذ طلحة تابش. جميع الحقوق محفوظة.",
   },
   fr: {
     brand: "CodeWithTabish",
@@ -59,7 +59,7 @@ const footerContent = {
       { label: "FAQ", href: "/faq" },
       { label: "Politique de confidentialité", href: "/privacy-policy" },
     ],
-    copyright: "© 2024 CodeWithTabish. Tous droits réservés.",
+    copyright: "© 2025 CodeWithTabish. Tous droits réservés.",
   },
   zh: {
     brand: "CodeWithTabish",
@@ -74,7 +74,7 @@ const footerContent = {
       { label: "常见问题", href: "/faq" },
       { label: "隐私政策", href: "/privacy-policy" },
     ],
-    copyright: "© 2024 CodeWithTabish。保留所有权利。",
+    copyright: "© 2025 CodeWithTabish。保留所有权利。",
   },
   de: {
     brand: "CodeWithTabish",
@@ -89,7 +89,7 @@ const footerContent = {
       { label: "FAQ", href: "/faq" },
       { label: "Datenschutz", href: "/privacy-policy" },
     ],
-    copyright: "© 2024 CodeWithTabish. Alle Rechte vorbehalten.",
+    copyright: "© 2025 CodeWithTabish. Alle Rechte vorbehalten.",
   },
   ja: {
     brand: "CodeWithTabish",
@@ -104,7 +104,7 @@ const footerContent = {
       { label: "よくある質問", href: "/faq" },
       { label: "プライバシーポリシー", href: "/privacy-policy" },
     ],
-    copyright: "© 2024 CodeWithTabish. All rights reserved.",
+    copyright: "© 2025 CodeWithTabish. All rights reserved.",
   },
   es: {
     brand: "CodeWithTabish",
@@ -119,7 +119,7 @@ const footerContent = {
       { label: "Preguntas frecuentes", href: "/faq" },
       { label: "Política de privacidad", href: "/privacy-policy" },
     ],
-    copyright: "© 2024 CodeWithTabish. Todos los derechos reservados.",
+    copyright: "© 2025 CodeWithTabish. Todos los derechos reservados.",
   },
 };
 

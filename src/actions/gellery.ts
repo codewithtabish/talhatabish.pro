@@ -1,10 +1,4 @@
-
-
-
-
-
 'use server';
-
 
 // Types
 export interface GalleryItem {
@@ -28,9 +22,6 @@ export interface StrapiResponse<T> {
   };
 }
 
-// Base API URL
-const API_BASE = 'https://sudais-axlan-strapi-backend.onrender.com/api';
-
 function handleError(error: unknown, context: string): never {
   if (error instanceof Error) {
     console.error(`[${context}]`, error.message);
@@ -43,12 +34,15 @@ function handleError(error: unknown, context: string): never {
 
 export async function getAllGalleryItems(): Promise<GalleryItem[]> {
   try {
-    // Check Redis cache first
+    // Use env variable for the base URL
+    const baseUrl = process.env.NEXT_PUBLIC_RENDER_URL || 'http://localhost:1337/api';
+    // Remove trailing slash if present
+    const normalizedBaseUrl = baseUrl.replace(/\/$/, '');
 
     // Fetch from Strapi
-    const res = await fetch(`http://localhost:1337/api/gelleries?populate=*`,{
-      next:{revalidate:1113600,tags:['gallery']},
-      
+    const res = await fetch(`${normalizedBaseUrl}/gelleries?populate=*`, {
+      cache: 'force-cache',
+      // next: { revalidate: 1113600, tags: ['gallery'] },
     });
     if (!res.ok) {
       const errorText = await res.text();

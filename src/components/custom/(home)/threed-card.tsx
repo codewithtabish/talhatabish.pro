@@ -46,8 +46,9 @@ export default function ThreeDCard({content}:{content:any}) {
         className="md:w-[240px] w-full h-[300px]  rounded-xl shadow-xl overflow-hidden flex flex-col justify-between transition-transform duration-300 ease-out"
       >
         <img
-        // src='/gallery/hero-one.jpeg'
-          src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=80"
+        src='/logos/dev-1.jpg'
+
+          // src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=80"
           alt="Portfolio"
           className="w-full h-2/3 object-cover"
         />
