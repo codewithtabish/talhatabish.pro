@@ -1,53 +1,22 @@
-import { getProjects } from "@/actions/projects";
-import { redis } from "@/lib/redis";
-import { RedisKeys } from "@/utils/redis-key";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
+import { revalidateTag } from 'next/cache';
+import { getProjects } from '@/actions/projects';
 
-export async function POST() {
-  try {
-    const locale = "en";
+export async function POST(req: NextRequest) {
+  console.log('🔁 Webhook received from Strapi: Revalidating `projects` tag');
 
-    // 1. Delete all keys related to projects
-    const allKeys = await redis.keys("projects:all:*");
-    const slugKeys = await redis.keys("projects:slug:*:*");
-    const keysToDelete = [...allKeys, ...slugKeys];
+  // Step 1: Invalidate the taga
+  revalidateTag('projects');
 
-    if (keysToDelete.length > 0) {
-      await redis.del(...keysToDelete);
-      console.log(`[Redis] Deleted ${keysToDelete.length} project-related keys`);
-    }
+  // Step 2: Warm the cache with English locale
+  const { data, error } = await getProjects('en');
 
-    // 2. Re-fetch updated project list from Strapi
-    const { data: enProjects, error } = await getProjects(locale);
-
-    if (error) {
-      console.error("❌ Failed to fetch projects:", error);
-      return NextResponse.json({ error }, { status: 500 });
-    }
-
-    // 3. Store updated project list in Redis
-    await redis.set(
-      RedisKeys.withLocale(RedisKeys.ALL_PROJECTS, locale),
-      enProjects
-    );
-
-    // 4. Cache each project individually
-    for (const project of enProjects) {
-      await redis.set(
-        RedisKeys.PROJECT_BY_SLUG(project.slug, locale),
-        project
-      );
-    }
-
-    return NextResponse.json({
-      message: "✅ Redis updated with latest projects.",
-      count: enProjects.length,
-    });
-  } catch (err: any) {
-    console.error("❌ WEBHOOK_ERROR:", err);
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
+  if (error) {
+    console.error('❌ Error warming project cache:', error);
+    return NextResponse.json({ revalidated: true, cacheWarmed: false, error });
   }
+
+  console.log(`✅ Project cache warmed with ${data.length} items for locale: en`);
+
+  return NextResponse.json({ revalidated: true, cacheWarmed: true, count: data.length });
 }

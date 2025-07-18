@@ -1,7 +1,5 @@
+// app/actions/getProjects.ts
 'use server';
-
-import { redis } from '@/lib/redis';
-import { RedisKeys } from '@/utils/redis-key';
 
 export type Project = {
   id: number;
@@ -45,45 +43,28 @@ export async function getProjectBySlug(
   if (!STRAPI_URL) {
     return { error: 'Strapi base URL is not set in environment variables.' };
   }
-
   if (!slug) {
     return { error: 'No slug provided.' };
   }
-
-  const cacheKey = RedisKeys.PROJECT_BY_SLUG(slug, locale);
-
-  // 🔹 Check Redis cache
-  try {
-    const cached = await redis.get(cacheKey);
-    if (cached) {
-      console.log(`[Redis] Single project (${slug}) returned from cache for locale: ${locale}`);
-      return { data: cached as Project };
-    }
-  } catch (err) {
-    console.error('[Redis] Cache read error:', err);
-  }
-
-  // 🔹 Build Strapi URL
+  // Populate the SEO component
   const url = `${STRAPI_URL}/projects?filters[slug][$eq]=${encodeURIComponent(
     slug
   )}&locale=${locale}&populate=seo`;
-
-  console.log('Fetching from Strapi:', url);
-
+  console.log('My url is ',url)
   try {
-    const res = await fetch(url, { next: { revalidate: 0 } });
+    const res = await fetch(url,{
+       cache: 'force-cache',
+  next: { tags: ['projects'] },
+    });
     if (!res.ok) {
       const errorText = await res.text();
       return { error: `Strapi error: ${res.status} ${errorText}` };
     }
-
     const json = await res.json();
     if (!json.data || !Array.isArray(json.data) || json.data.length === 0) {
       return { error: 'Project not found.' };
     }
-
     const item = json.data[0];
-
     const project: Project = {
       id: item.id,
       title: item.title?.trim() || '',
@@ -98,17 +79,8 @@ export async function getProjectBySlug(
       keywords: (item.keywords || '').trim(),
       isLive: !!item.liveUrl,
       isPublic: !!item.githubUrl,
-      seo: item.seo?.[0] || null,
+      seo: item.seo?.[0] || null, // <-- SEO component
     };
-
-    // 🔹 Save to Redis
-    try {
-      await redis.set(cacheKey, project);
-      console.log(`[Redis] Single project (${slug}) cached for locale: ${locale}`);
-    } catch (setErr) {
-      console.error('[Redis] Cache set error:', setErr);
-    }
-
     return { data: project };
   } catch (err: any) {
     return { error: `Network or unexpected error: ${err?.message || err}` };
