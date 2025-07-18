@@ -35,7 +35,7 @@ function handleError(error: unknown, context: string): never {
 export async function getAllGalleryItems(): Promise<GalleryItem[]> {
   try {
     // Use env variable for the base URL
-    const baseUrl = process.env.NEXT_PUBLIC_RENDER_URL || 'http://localhost:1337/api';
+    const baseUrl = process.env.NEXT_PUBLIC_RENDER_URL ! 
     // Remove trailing slash if present
     const normalizedBaseUrl = baseUrl.replace(/\/$/, '');
 
@@ -50,6 +50,7 @@ export async function getAllGalleryItems(): Promise<GalleryItem[]> {
     }
 
     const json: StrapiResponse<GalleryItem> = await res.json();
+    console.log('The data of gallery is ',json)
 
     // Cache it
 
