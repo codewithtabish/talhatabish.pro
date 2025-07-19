@@ -14,6 +14,7 @@ import KiboHeroVideo from "@/components/custom/(home)/kibo-hero-video";
 import HomeBlogSection from "@/components/custom/(home)/blog/home-blog-section";
 import HomeProjectSection from "@/components/custom/(home)/(project)/project-section";
 import TrustedByCompanies from "@/components/mvpblocks/sparkles-logo";
+import WaitlistComp from "@/components/mvpblocks/waitlist";
 
 export default async function LocalePage({
   params,
@@ -57,6 +58,7 @@ export default async function LocalePage({
         {/* @ts-ignore */}
         <GallerySection locale={locale} />
         <GalleryWrapper />
+        <WaitlistComp/>
 
         {/*  */}
         <HomeProjectSection locale={locale}/>
