@@ -53,8 +53,10 @@ export async function getProjectBySlug(
   console.log('My url is ',url)
   try {
     const res = await fetch(url,{
-       cache: 'force-cache',
-  next: { tags: ['singleProject'] },
+        next: {
+        tags: ['singleProject'],
+        revalidate: 86400, // 1 day
+      },
     });
     if (!res.ok) {
       const errorText = await res.text();
