@@ -8,7 +8,7 @@ export default async function AboutPage({
   const { locale } = await params;
 
   return (
-    <main className="w-full min-h-screen flex justify-center bg-background">
+    <main className="w-full min-h-screen flex justify-center bg-background overflow-x-hidden">
       <div
         className="
           w-full

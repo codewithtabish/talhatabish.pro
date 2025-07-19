@@ -45,7 +45,7 @@ const AboutSection: React.FC<Props> = ({ locale = "en" }) => {
 
   return (
     <section
-      className="relative w-full  pt-10 pb-6 sm:pt-16 sm:pb-10"
+      className="relative w-full  pt-10 pb-6 sm:pt-16 sm:pb-10 overflow-x-hidden"
       dir={isRTL ? "rtl" : "ltr"}
     >
       <Spotlight />
