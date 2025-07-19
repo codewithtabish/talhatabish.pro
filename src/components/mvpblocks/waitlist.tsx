@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 import { Spotlight } from './spot-light';
 import { Particles } from '../ui/particles';
 import waitlistContent from '@/utils/language-data/waitlist-content';
-import TocDialog from './toc-dialog';
+import TocDialog from './toc-dialog'; // <-- Import your modal
 
 const brico = Bricolage_Grotesque({
   subsets: ['latin'],
@@ -22,12 +22,26 @@ const users = [
   { imgUrl: 'https://avatars.githubusercontent.com/u/71373838' },
 ];
 
+const WAITLIST_TEXT = {
+  en: { button: "Join Waitlist", placeholder: "Enter your email" },
+  ur: { button: "ویٹ لسٹ میں شامل ہوں", placeholder: "اپنا ای میل درج کریں" },
+  ar: { button: "انضم إلى قائمة الانتظار", placeholder: "أدخل بريدك الإلكتروني" },
+  zh: { button: "加入候补名单", placeholder: "输入您的邮箱" },
+  fr: { button: "Rejoindre la liste d'attente", placeholder: "Entrez votre email" },
+  de: { button: "Zur Warteliste", placeholder: "E-Mail eingeben" },
+  ja: { button: "ウェイトリストに参加", placeholder: "メールアドレスを入力" },
+};
+
+const RTL_LANGS = ['ar', 'ur', 'fa', 'he'];
+
 type Props = {
   locale?: keyof typeof waitlistContent;
 };
 
 const WaitlistComp: React.FC<Props> = ({ locale = 'en' }) => {
   const content = waitlistContent[locale] || waitlistContent['en'];
+  const { button, placeholder } = WAITLIST_TEXT[locale] || WAITLIST_TEXT['en'];
+  const isRtl = RTL_LANGS.includes(locale);
 
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -52,7 +66,7 @@ const WaitlistComp: React.FC<Props> = ({ locale = 'en' }) => {
   };
 
   return (
-    <main className="relative flex w-full items-center justify-center overflow-x-hidden overflow-y-hidden">
+    <main className="relative flex w-full items-center justify-center ">
       <Spotlight />
 
       <Particles
@@ -92,17 +106,11 @@ const WaitlistComp: React.FC<Props> = ({ locale = 'en' }) => {
           className={cn(
             'mb-4 cursor-crosshair bg-gradient-to-b from-foreground via-foreground/80 to-foreground/40 bg-clip-text text-4xl font-bold text-transparent sm:text-7xl',
             brico.className,
+            isRtl ? 'text-right' : 'text-center'
           )}
+          dir={isRtl ? 'rtl' : 'ltr'}
         >
-          {content.heading.split(' ').map((word, i) =>
-            word.toLowerCase().includes('waitlist') ? (
-              <span key={i} className="bg-primary from-foreground via-rose-300 to-primary bg-clip-text text-transparent dark:bg-gradient-to-b">
-                {word + ' '}
-              </span>
-            ) : (
-              word + ' '
-            )
-          )}
+          {content.heading}
         </motion.h1>
 
         {/* Subtitle */}
@@ -110,11 +118,13 @@ const WaitlistComp: React.FC<Props> = ({ locale = 'en' }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="mb-12 mt-2 text-muted-foreground sm:text-lg"
+          className={cn(
+            "mb-12 mt-2 text-muted-foreground sm:text-lg",
+            isRtl ? "text-right" : "text-center"
+          )}
+          dir={isRtl ? 'rtl' : 'ltr'}
         >
           {content.subheading}
-      
-
         </motion.p>
 
         {/* Email Form */}
@@ -123,70 +133,65 @@ const WaitlistComp: React.FC<Props> = ({ locale = 'en' }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
           onSubmit={handleSubmit}
-          className="mx-auto flex flex-col gap-4 sm:flex-row max-w-xl"
+          className={cn(
+            "mx-auto flex flex-col gap-4 sm:flex-row max-w-xl",
+            isRtl ? "flex-row-reverse" : ""
+          )}
+          dir={isRtl ? 'rtl' : 'ltr'}
         >
-          <AnimatePresence mode="wait">
-            {!submitted ? (
-              <>
-                <div className="relative flex-1">
-                  <motion.input
-                    key="email-input"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setEmail(e.target.value)
-                    }
-                    required
-                    className="w-full rounded-xl border border-primary/20 bg-white/5 px-6 py-4 text-foreground backdrop-blur-md transition-all placeholder:text-muted-foreground/70 focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
-                  />
-                  {error && (
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="mt-2 rounded-xl border border-destructive/40 bg-destructive/10 px-4 py-1 text-sm text-destructive sm:absolute"
-                    >
-                      {error}
-                    </motion.p>
-                  )}
-                </div>
-                <button
-                  type="submit"
-                  disabled={isSubmitting || submitted}
-                  className="group relative overflow-hidden rounded-xl bg-gradient-to-b from-rose-500 to-rose-700 px-8 py-4 font-semibold text-primary-foreground text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset] transition-all duration-300 hover:shadow-[0_0_20px_rgba(236,72,153,0.4)] focus:outline-none focus:ring-2 focus:ring-primary/50 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    {isSubmitting ? 'Joining...' : 'Join Waitlist'}
-                    <Sparkles className="h-4 w-4 transition-all duration-300 group-hover:rotate-12" />
-                  </span>
-                  <span className="absolute inset-0 z-0 bg-gradient-to-r from-rose-500 to-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
-                </button>
-              </>
-            ) : (
-              <motion.div
-                key="thank-you-message"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.6 }}
-                className={cn(
-                  'flex-1 cursor-pointer rounded-xl border border-primary/20 bg-gradient-to-r from-primary/10 via-transparent to-primary/10 px-6 py-4 font-medium text-primary backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_20px_rgba(236,72,153,0.3)] active:brightness-125',
-                  resolvedTheme === 'dark' ? 'glass' : 'glass2',
-                )}
+          <div className={`relative flex-1 ${isRtl ? 'text-right' : ''}`}>
+            <motion.input
+              key="email-input"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              type="email"
+              name="email"
+              id="email"
+              placeholder={placeholder}
+              value={email}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setEmail(e.target.value)
+              }
+              required
+              className={cn(
+                "w-full rounded-xl border border-primary/20 bg-white/5 px-6 py-4 text-foreground backdrop-blur-md transition-all placeholder:text-muted-foreground/70 focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/30",
+                isRtl ? "text-right" : ""
+              )}
+              style={isRtl ? { direction: 'rtl' } : {}}
+            />
+            {error && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="mt-2 rounded-xl border border-destructive/40 bg-destructive/10 px-4 py-1 text-sm text-destructive sm:absolute"
               >
-                <span className="flex items-center justify-center gap-2">
-                  Thanks for joining!{' '}
-                  <Sparkles className="h-4 w-4 animate-pulse" />
-                </span>
-              </motion.div>
+                {error}
+              </motion.p>
             )}
-          </AnimatePresence>
+          </div>
+          <button
+            type="submit"
+            disabled={isSubmitting || submitted}
+            className={cn(
+              "group relative overflow-hidden rounded-xl bg-gradient-to-b from-rose-500 to-rose-700 px-8 py-4 font-semibold text-primary-foreground text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset] transition-all duration-300 hover:shadow-[0_0_20px_rgba(236,72,153,0.4)] focus:outline-none focus:ring-2 focus:ring-primary/50 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50",
+              isRtl ? "text-right" : ""
+            )}
+            style={isRtl ? { direction: 'rtl' } : {}}
+          >
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              {isSubmitting
+                ? (locale === 'ur'
+                  ? 'شامل ہو رہے ہیں...'
+                  : locale === 'ar'
+                  ? '...يتم الانضمام'
+                  : button)
+                : button}
+              <Sparkles className="h-4 w-4 transition-all duration-300 group-hover:rotate-12" />
+            </span>
+            <span className="absolute inset-0 z-0 bg-gradient-to-r from-rose-500 to-primary opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+          </button>
         </motion.form>
 
         {/* Avatars and joined count */}
@@ -223,7 +228,7 @@ const WaitlistComp: React.FC<Props> = ({ locale = 'en' }) => {
             transition={{ duration: 0.5, delay: 1.3 }}
             className="ml-2 text-muted-foreground"
           >
-            <span className="font-semibold text-primary">100+</span> already joined ✨
+            <span className="font-semibold text-primary">100+</span> {locale === 'ur' ? 'پہلے ہی شامل ہو چکے ہیں ✨' : locale === 'ar' ? 'انضموا بالفعل ✨' : 'already joined ✨'}
           </motion.span>
         </motion.div>
 
@@ -252,11 +257,10 @@ const WaitlistComp: React.FC<Props> = ({ locale = 'en' }) => {
                 <span className="text-muted-foreground">
                   {project.expectedLaunchDate}
                 </span>
-                    <div className='z-[999]'>
-
-          </div>
-          <TocDialog title={project.title} detail={project.detail}  locale={locale}/>
-
+              </div>
+              {/* Modal button placed here, outside the flex row */}
+              <div className="mt-2">
+                <TocDialog title={project.title} detail={project.detail} locale={locale} />
               </div>
             </motion.div>
           ))}

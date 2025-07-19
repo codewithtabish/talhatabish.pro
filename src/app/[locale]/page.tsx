@@ -15,6 +15,7 @@ import HomeBlogSection from "@/components/custom/(home)/blog/home-blog-section";
 import HomeProjectSection from "@/components/custom/(home)/(project)/project-section";
 import TrustedByCompanies from "@/components/mvpblocks/sparkles-logo";
 import WaitlistComp from "@/components/mvpblocks/waitlist";
+import TestimonialsCarousel from "@/components/mvpblocks/testimonials-carousel";
 
 export default async function LocalePage({
   params,
@@ -62,6 +63,7 @@ export default async function LocalePage({
         {/*  */}
         <HomeProjectSection locale={locale}/>
         <HomeBlogSection locale={locale}/>
+        {/* <TestimonialsCarousel/> */}
         <Feedbacks locale={locale} />
       </div>
     </main>
