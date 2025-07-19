@@ -1,4 +1,5 @@
 import AboutSection from "@/components/mvpblocks/about-us-1";
+import { Spotlight } from "@/components/mvpblocks/spot-light";
 
 export default async function AboutPage({
   params,
@@ -9,6 +10,8 @@ export default async function AboutPage({
 
   return (
     <main className="w-full min-h-screen flex justify-center bg-background overflow-x-hidden">
+            <Spotlight />
+      
       <div
         className="
           w-full
