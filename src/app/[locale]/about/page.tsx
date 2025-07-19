@@ -10,7 +10,7 @@ export default async function AboutPage({
 
   return (
     <main className="w-full min-h-screen flex justify-center bg-background overflow-x-hidden">
-            <Spotlight />
+            {/* <Spotlight /> */}
       
       <div
         className="
