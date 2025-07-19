@@ -1,26 +1,38 @@
-import { NextResponse } from 'next/server';
-import { redis } from '@/lib/redis'; // Your Redis client
+import { NextRequest, NextResponse } from 'next/server';
+import { revalidateTag } from 'next/cache';
 import { getAllGalleryItems } from '@/actions/gellery';
-import { RedisKeys } from '@/utils/redis-key';
 
-export async function POST() {
+export async function POST(req: NextRequest) {
+  console.log('🔁 Webhook received from Strapi: Revalidating gallery...');
+
+  // Step 1: Invalidate the 'gallery' tag
+  revalidateTag('gallery');
+
+  // Step 2: Warm the cache
   try {
-    // Delete the gallery cache
-    await redis.del(RedisKeys.ALL_GALLERY_ITEMS);
-    console.log('Deleted from redis')
-
-    // Fetch fresh gallery items
     const items = await getAllGalleryItems();
-
-    // Save to Redis
-    await redis.set('gallery:all', JSON.stringify(items));
-
+    console.log(`✅ Gallery cache warmed with ${items.length} items`);
     return NextResponse.json({
-      message: 'Gallery cache updated successfully',
+      revalidated: true,
+      cacheWarmed: true,
       count: items.length,
     });
-  } catch (error) {
-    console.error('Error updating gallery cache:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  } catch (error: unknown) {
+    let message = 'Unknown error';
+
+    if (error instanceof Error) {
+      message = error.message;
+    } else if (typeof error === 'string') {
+      message = error;
+    } else if (typeof error === 'object' && error !== null) {
+      message = JSON.stringify(error);
+    }
+
+    console.error('❌ Error warming gallery cache:', message);
+    return NextResponse.json({
+      revalidated: true,
+      cacheWarmed: false,
+      error: message,
+    });
   }
 }
