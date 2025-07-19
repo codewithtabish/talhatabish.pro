@@ -10,10 +10,22 @@ import { Spotlight } from './spot-light';
 import { Particles } from '../ui/particles';
 import waitlistContent from '@/utils/language-data/waitlist-content';
 import TocDialog from './toc-dialog'; // <-- Import your modal
+import { WaitListPageTabs } from '../ui/expanded-tabs';
+import { Home,Bell,Settings,HelpCircle, Shield, User, } from "lucide-react"
 
 const brico = Bricolage_Grotesque({
   subsets: ['latin'],
 });
+
+const tabs = [
+    { title: "Dashboard", icon: Home },
+    { title: "Notifications", icon: Bell },
+    { type: "separator" as const },
+    { title: "Settings", icon: Settings },
+    { title: "Support", icon: HelpCircle },
+    { title: "Security", icon: Shield },
+  ]
+
 
 const users = [
   { imgUrl: 'https://avatars.githubusercontent.com/u/111780029' },
@@ -234,6 +246,12 @@ const WaitlistComp: React.FC<Props> = ({ locale = 'en' }) => {
             <span className="font-semibold text-primary">100+</span> {locale === 'ur' ? 'پہلے ہی شامل ہو چکے ہیں ✨' : locale === 'ar' ? 'انضموا بالفعل ✨' : 'already joined ✨'}
           </motion.span>
         </motion.div>
+
+        {/* waitlist all projects tabs*/}
+        <div className='md:max-w-2xl mx-auto mt-12'>
+        <WaitListPageTabs locale={locale} onChange={()=>{}}/>
+
+        </div>
 
         {/* Waitlist Projects */}
         <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 w-full">

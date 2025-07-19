@@ -12,8 +12,9 @@ import {
 import { cn } from "@/lib/utils";
 import { navbarContent } from "@/utils/language-data/navbar";
 import Link from "next/link";
-import ThemeToggle from "../(general)/theme-toggle";
+// import ThemeToggle from "../(general)/theme-toggle";
 import { BorderBeam } from "@/components/magicui/border-beam";
+import ThemeToggleButton from "@/components/ui/theme-toggle-button";
 
 type NavbarProps = {
   locale: string;
@@ -78,7 +79,11 @@ export default function Navbar({ locale }: NavbarProps) {
           <DockIcon>
             <Tooltip>
               <TooltipTrigger asChild>
-                <ThemeToggle />
+                    <ThemeToggleButton  variant="circle-blur" start="top-right" 
+                                // url="https://media.giphy.com/media/KBbr4hHl9DSahKvInO/giphy.gif?cid=790b76112m5eeeydoe7et0cr3j3ekb1erunxozyshuhxx2vl&ep=v1_stickers_search&rid=giphy.gif&ct=s"
+                
+                                />
+                {/* <ThemeToggle /> */}
               </TooltipTrigger>
               <TooltipContent>
                 <p>Theme</p>

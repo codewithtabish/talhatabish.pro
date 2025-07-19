@@ -1,4 +1,3 @@
-import { SocialBar } from "@/components/custom/(home)/social-bar";
 import ConfettiClientWrapper from "@/components/custom/(home)/particle-wrapper";
 import HeroSection from "@/components/custom/(home)/hero-section";
 import AboutCombined from "@/components/custom/(home)/hero-about-combined";
@@ -14,8 +13,7 @@ import KiboHeroVideo from "@/components/custom/(home)/kibo-hero-video";
 import HomeBlogSection from "@/components/custom/(home)/blog/home-blog-section";
 import HomeProjectSection from "@/components/custom/(home)/(project)/project-section";
 import TrustedByCompanies from "@/components/mvpblocks/sparkles-logo";
-import WaitlistComp from "@/components/mvpblocks/waitlist";
-import TestimonialsCarousel from "@/components/mvpblocks/testimonials-carousel";
+import { CardCarousel } from "@/components/ui/card-carousel";
 
 export default async function LocalePage({
   params,
@@ -23,6 +21,13 @@ export default async function LocalePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+
+  const images = [
+    { src: "/team/talha.jpg", alt: "Image 1" },
+    { src: "/team/ayesha.jpg", alt: "Image 2" },
+    { src: "/team/sudais.jpg", alt: "Image 3" },
+    { src: "/team/t2.jpeg", alt: "Image 5" },
+  ]
 
   return (
     <main className="w-full min-h-screen flex justify-center bg-background">
@@ -48,6 +53,7 @@ export default async function LocalePage({
       >
         <ConfettiClientWrapper />
         <HeroSection lang={locale} />
+        {/* <Scene/> */}
         <AboutCombined locale={locale} />
         <KiboHeroVideo/>
       {/* @ts-ignore */}
@@ -58,7 +64,13 @@ export default async function LocalePage({
         {/* <IconCloudDemo /> */}
         {/* @ts-ignore */}
         <GallerySection locale={locale} />
-        <GalleryWrapper />
+        <CardCarousel
+        images={images}
+        autoplayDelay={2000}
+        showPagination={true}
+        showNavigation={true}
+        />
+        {/* <GalleryWrapper /> */}
 
         {/*  */}
         <HomeProjectSection locale={locale}/>

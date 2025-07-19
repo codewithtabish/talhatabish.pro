@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { Github, Twitter, Linkedin, Facebook, Instagram, Mail } from "lucide-react";
 import footerContent from "@/utils/language-data/footer-content";
-import ThemeToggleIconToggle from "../custom/(general)/theme-toggle";
+import ThemeToggleButton from "../ui/theme-toggle-button";
+// import ThemeToggleIconToggle from "../custom/(general)/theme-toggle";
 
 const SOCIALS = [
   { icon: Github, label: "GitHub", href: "https://github.com/codewithtabish" },
@@ -136,7 +137,14 @@ export default function Footer({ locale = "en" }: Props) {
           </div>
         </div>
         <div className="flex justify-end">
-          <ThemeToggleIconToggle />
+                <ThemeToggleButton  variant="circle-blur" start="top-right" 
+                url="https://media.giphy.com/media/KBbr4hHl9DSahKvInO/giphy.gif?cid=790b76112m5eeeydoe7et0cr3j3ekb1erunxozyshuhxx2vl&ep=v1_stickers_search&rid=giphy.gif&ct=s"
+
+                />
+
+          {/* <ThemeToggleButton /> */}
+
+          {/* <ThemeToggleIconToggle /> */}
         </div>
 
         <div className="mt-10 border-t pt-6">
