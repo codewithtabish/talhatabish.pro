@@ -36,7 +36,8 @@ export async function getProjects(
       // Avoid using force-cache so that revalidateTag works
       next: {
         tags: ['projects'],
-        revalidate: 86400, // 1 day
+        revalidate: 2592000, // 30 days in seconds
+
       },
     });
 
