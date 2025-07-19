@@ -33,7 +33,7 @@ export default function LanguageSwitcher() {
 
   return (
     <div
-      className="fixed top-4 right-6 z-50 cursor-pointer"
+      className="fixed top-4 right-6 z-[999] cursor-pointer"
       style={{ userSelect: "none" }}
     >
       <Popover>

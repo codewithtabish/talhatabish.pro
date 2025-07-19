@@ -66,8 +66,12 @@ const WaitlistComp: React.FC<Props> = ({ locale = 'en' }) => {
   };
 
   return (
-    <main className="relative flex w-full items-center justify-center ">
+    <div className='w-full overflow-hidden scroll-smooth'>
       <Spotlight />
+
+    <main className="relative flex w-full items-center justify-center   ">
+            {/* <Spotlight /> */}
+
 
       <Particles
         className="absolute inset-0 z-0"
@@ -267,6 +271,7 @@ const WaitlistComp: React.FC<Props> = ({ locale = 'en' }) => {
         </div>
       </div>
     </main>
+    </div>
   );
 };
 
