@@ -1,20 +1,20 @@
 'use client';
 
-import type React from 'react';
-import { useState, useEffect } from 'react';
-import { ArrowRight, Sparkles, Code, Star, ExternalLink } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { Bricolage_Grotesque } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import { Spotlight } from './spot-light';
 import { Particles } from '../ui/particles';
+import waitlistContent from '@/utils/language-data/waitlist-content';
+import TocDialog from './toc-dialog';
 
 const brico = Bricolage_Grotesque({
   subsets: ['latin'],
 });
 
-// Sample users for the waitlist display
 const users = [
   { imgUrl: 'https://avatars.githubusercontent.com/u/111780029' },
   { imgUrl: 'https://avatars.githubusercontent.com/u/123104247' },
@@ -22,7 +22,13 @@ const users = [
   { imgUrl: 'https://avatars.githubusercontent.com/u/71373838' },
 ];
 
-export default function WaitlistComp() {
+type Props = {
+  locale?: keyof typeof waitlistContent;
+};
+
+const WaitlistComp: React.FC<Props> = ({ locale = 'en' }) => {
+  const content = waitlistContent[locale] || waitlistContent['en'];
+
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -40,14 +46,13 @@ export default function WaitlistComp() {
     setError(null);
 
     // Your form submission logic here
-    // For now, let's just simulate a delay
     await new Promise((resolve) => setTimeout(resolve, 1000));
     setSubmitted(true);
     setIsSubmitting(false);
   };
 
   return (
-    <main className="relative flex min-h-screen w-full items-center justify-center overflow-hidden xl:h-screen">
+    <main className="relative flex w-full items-center justify-center overflow-x-hidden overflow-y-hidden">
       <Spotlight />
 
       <Particles
@@ -58,7 +63,7 @@ export default function WaitlistComp() {
         color={color}
       />
 
-      <div className="relative z-[100] mx-auto max-w-2xl px-4 py-16 text-center">
+      <div className="relative z-[100] mx-auto w-full max-w-7xl px-2 sm:px-6 py-10 text-center">
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -89,10 +94,15 @@ export default function WaitlistComp() {
             brico.className,
           )}
         >
-          Join the{' '}
-          <span className="bg-primary from-foreground via-rose-300 to-primary bg-clip-text text-transparent dark:bg-gradient-to-b">
-            Waitlist
-          </span>
+          {content.heading.split(' ').map((word, i) =>
+            word.toLowerCase().includes('waitlist') ? (
+              <span key={i} className="bg-primary from-foreground via-rose-300 to-primary bg-clip-text text-transparent dark:bg-gradient-to-b">
+                {word + ' '}
+              </span>
+            ) : (
+              word + ' '
+            )
+          )}
         </motion.h1>
 
         {/* Subtitle */}
@@ -102,57 +112,18 @@ export default function WaitlistComp() {
           transition={{ duration: 1, delay: 0.5 }}
           className="mb-12 mt-2 text-muted-foreground sm:text-lg"
         >
-          Be the first to access our revolutionary component library.
-          <br className="hidden sm:block" /> Build your MVP faster than ever
-          before.
+          {content.subheading}
+      
+
         </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="mb-12 grid grid-cols-2 gap-6 sm:grid-cols-3"
-        >
-          <div
-            className={cn(
-              'flex flex-col items-center justify-center rounded-xl border border-primary/10 bg-white/5 p-4 backdrop-blur-md',
-              resolvedTheme === 'dark' ? 'glass' : 'glass2',
-            )}
-          >
-            <Code className="mb-2 h-5 w-5 text-primary" />
-            <span className="text-xl font-bold">100+</span>
-            <span className="text-xs text-muted-foreground">Components</span>
-          </div>
-
-          <div
-            className={cn(
-              'flex flex-col items-center justify-center rounded-xl border border-primary/10 bg-white/5 p-4 backdrop-blur-md',
-              resolvedTheme === 'dark' ? 'glass' : 'glass2',
-            )}
-          >
-            <ExternalLink className="mb-2 h-5 w-5 text-primary" />
-            <span className="text-xl font-bold">Open Source</span>
-            <span className="text-xs text-muted-foreground">BSD 3-Clause</span>
-          </div>
-
-          <div
-            className={cn(
-              'flex flex-col items-center justify-center rounded-xl border border-primary/10 bg-white/5 p-4 backdrop-blur-md',
-              resolvedTheme === 'dark' ? 'glass' : 'glass2',
-            )}
-          >
-            <Star className="mb-2 h-5 w-5 text-primary" />
-            <span className="text-xl font-bold">Premium</span>
-            <span className="text-xs text-muted-foreground">Quality</span>
-          </div>
-        </motion.div>
-
+        {/* Email Form */}
         <motion.form
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
           onSubmit={handleSubmit}
-          className="mx-auto flex flex-col gap-4 sm:flex-row"
+          className="mx-auto flex flex-col gap-4 sm:flex-row max-w-xl"
         >
           <AnimatePresence mode="wait">
             {!submitted ? (
@@ -218,6 +189,7 @@ export default function WaitlistComp() {
           </AnimatePresence>
         </motion.form>
 
+        {/* Avatars and joined count */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -251,33 +223,47 @@ export default function WaitlistComp() {
             transition={{ duration: 0.5, delay: 1.3 }}
             className="ml-2 text-muted-foreground"
           >
-            <span className="font-semibold text-primary">100+</span> already
-            joined ✨
+            <span className="font-semibold text-primary">100+</span> already joined ✨
           </motion.span>
         </motion.div>
-      </div>
 
-      <style jsx global>{`
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0) translateX(0);
-            opacity: 0.3;
-          }
-          25% {
-            transform: translateY(-20px) translateX(10px);
-            opacity: 0.8;
-          }
-          50% {
-            transform: translateY(-40px) translateX(-10px);
-            opacity: 0.4;
-          }
-          75% {
-            transform: translateY(-20px) translateX(10px);
-            opacity: 0.6;
-          }
-        }
-      `}</style>
+        {/* Waitlist Projects */}
+        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 w-full">
+          {content.projects.map((project, idx) => (
+            <motion.div
+              key={project.slug}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
+              className="text-left"
+              style={{ background: 'none', border: 'none', boxShadow: 'none', padding: 0 }}
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                className="mb-4 h-40 w-full rounded-lg object-cover"
+              />
+              <h3 className="mb-2 text-lg font-semibold">{project.title}</h3>
+              <p className="mb-2 text-sm text-muted-foreground">{project.desc}</p>
+              <div className="flex items-center justify-between text-xs">
+                <span className="rounded-full bg-primary/10 px-3 py-1 font-medium text-primary">
+                  {project.status}
+                </span>
+                <span className="text-muted-foreground">
+                  {project.expectedLaunchDate}
+                </span>
+                    <div className='z-[999]'>
+
+          </div>
+          <TocDialog title={project.title} detail={project.detail}  locale={locale}/>
+
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </main>
   );
-}
+};
+
+export default WaitlistComp;

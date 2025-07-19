@@ -22,6 +22,17 @@ function isExternal(href: string) {
   return href.startsWith("http") || href.startsWith("mailto:");
 }
 
+const WAITLIST_LABELS: Record<string, string> = {
+  en: "Waitlist",
+  ur: "ویٹ لسٹ",
+  ar: "قائمة الانتظار",
+  fr: "Liste d'attente",
+  zh: "候补名单",
+  de: "Warteliste",
+  ja: "ウェイトリスト",
+  es: "Lista de espera",
+};
+
 export default function Footer({ locale = "en" }: Props) {
   const content = footerContent[locale] || footerContent.en;
 
@@ -32,6 +43,7 @@ export default function Footer({ locale = "en" }: Props) {
   const supportLinks = content.links.filter(link =>
     ["/contact", "/help", "/faq"].includes(link.href)
   );
+  const waitlistLink = content.links.find(link => link.href === "/waitlist");
 
   // Helper to prepend locale to internal links
   const withLocale = (href: string) => {
@@ -44,7 +56,7 @@ export default function Footer({ locale = "en" }: Props) {
   return (
     <footer className="mt-16 w-full rounded-t-xl bg-secondary dark:bg-secondary/20">
       <div className="mx-auto max-w-screen-xl px-4 pb-6 pt-12 sm:px-6 lg:px-8 lg:pt-20">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 text-center">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-4 text-center">
           {/* Brand and description */}
           <div className="flex flex-col items-center">
             <div className="flex justify-center gap-2 text-primary">
@@ -103,10 +115,28 @@ export default function Footer({ locale = "en" }: Props) {
               ))}
             </ul>
           </div>
+
+          {/* Waitlist Link */}
+          <div className="flex flex-col items-center">
+            <p className="text-lg font-medium mb-6">
+              {WAITLIST_LABELS[locale] || WAITLIST_LABELS["en"]}
+            </p>
+            <ul className="space-y-4 text-sm">
+              {waitlistLink && (
+                <li>
+                  <Link
+                    href={withLocale(waitlistLink.href)}
+                    className="text-secondary-foreground/80 hover:text-primary transition font-medium"
+                  >
+                    {waitlistLink.label}
+                  </Link>
+                </li>
+              )}
+            </ul>
+          </div>
         </div>
         <div className="flex justify-end">
-        <ThemeToggleIconToggle/>
-
+          <ThemeToggleIconToggle />
         </div>
 
         <div className="mt-10 border-t pt-6">

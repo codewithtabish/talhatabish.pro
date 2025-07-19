@@ -8,6 +8,7 @@ const footerContent = {
       { label: "Home", href: "/" },
       { label: "About Us", href: "/about" },
       { label: "Projects", href: "/projects" },
+      { label: "Waitlist", href: "/waitlist" }, // Added
       { label: "Blogs", href: "/blogs" },
       { label: "Contact Us", href: "/contact" },
       { label: "Help", href: "/help" },
@@ -23,6 +24,7 @@ const footerContent = {
       { label: "ہوم", href: "/" },
       { label: "ہمارے بارے میں", href: "/about" },
       { label: "پروجیکٹس", href: "/projects" },
+      { label: "ویٹ لسٹ", href: "/waitlist" }, // Added
       { label: "بلاگز", href: "/blogs" },
       { label: "رابطہ کریں", href: "/contact" },
       { label: "مدد", href: "/help" },
@@ -38,6 +40,7 @@ const footerContent = {
       { label: "الرئيسية", href: "/" },
       { label: "من نحن", href: "/about" },
       { label: "المشاريع", href: "/projects" },
+      { label: "قائمة الانتظار", href: "/waitlist" }, // Added
       { label: "المدونة", href: "/blogs" },
       { label: "اتصل بنا", href: "/contact" },
       { label: "مساعدة", href: "/help" },
@@ -53,6 +56,7 @@ const footerContent = {
       { label: "Accueil", href: "/" },
       { label: "À propos", href: "/about" },
       { label: "Projets", href: "/projects" },
+      { label: "Liste d'attente", href: "/waitlist" }, // Added
       { label: "Blogs", href: "/blogs" },
       { label: "Contact", href: "/contact" },
       { label: "Aide", href: "/help" },
@@ -68,6 +72,7 @@ const footerContent = {
       { label: "首页", href: "/" },
       { label: "关于我们", href: "/about" },
       { label: "项目", href: "/projects" },
+      { label: "候补名单", href: "/waitlist" }, // Added
       { label: "博客", href: "/blogs" },
       { label: "联系我们", href: "/contact" },
       { label: "帮助", href: "/help" },
@@ -83,6 +88,7 @@ const footerContent = {
       { label: "Startseite", href: "/" },
       { label: "Über uns", href: "/about" },
       { label: "Projekte", href: "/projects" },
+      { label: "Warteliste", href: "/waitlist" }, // Added
       { label: "Blogs", href: "/blogs" },
       { label: "Kontakt", href: "/contact" },
       { label: "Hilfe", href: "/help" },
@@ -98,6 +104,7 @@ const footerContent = {
       { label: "ホーム", href: "/" },
       { label: "私たちについて", href: "/about" },
       { label: "プロジェクト", href: "/projects" },
+      { label: "ウェイトリスト", href: "/waitlist" }, // Added
       { label: "ブログ", href: "/blogs" },
       { label: "お問い合わせ", href: "/contact" },
       { label: "ヘルプ", href: "/help" },
@@ -113,6 +120,7 @@ const footerContent = {
       { label: "Inicio", href: "/" },
       { label: "Sobre nosotros", href: "/about" },
       { label: "Proyectos", href: "/projects" },
+      { label: "Lista de espera", href: "/waitlist" }, // Added
       { label: "Blogs", href: "/blogs" },
       { label: "Contacto", href: "/contact" },
       { label: "Ayuda", href: "/help" },

@@ -58,7 +58,6 @@ export default async function LocalePage({
         {/* @ts-ignore */}
         <GallerySection locale={locale} />
         <GalleryWrapper />
-        <WaitlistComp/>
 
         {/*  */}
         <HomeProjectSection locale={locale}/>
