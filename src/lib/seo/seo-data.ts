@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const baseUrl = "https://www.talhatabish.pro/";
+const baseUrl = "https://www.talhatabish.pro/en";
 
 export const metadata: Metadata = {
   title: {
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${baseUrl}og-cover.png`,
+        url: "https://www.talhatabish.pro/og-cover.png",
         width: 1200,
         height: 630,
         alt: "CodeWithTabish Logo",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CodeWithTabish – Digital Products & AI Solutions",
     description: "Building the future of technology with passion, innovation, and expertise. Meet the CodeWithTabish team.",
-    images: [`${baseUrl}og-cover.png`],
+    images: ["https://www.talhatabish.pro/og-cover.png"],
     creator: "@codewithtabish",
     site: "@codewithtabish",
   },
@@ -77,18 +77,17 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-icons: {
-  icon: [
-    { url: "/favicon.ico", sizes: "any" },
-    { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-    { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-  ],
-  apple: "/apple-touch-icon.png",
-  other: [
-    { rel: "manifest", url: "/site.webmanifest" },
-    { rel: "icon", url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
-    { rel: "icon", url: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
-  ],
-},
-
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+    other: [
+      { rel: "manifest", url: "/site.webmanifest" },
+      { rel: "icon", url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+      { rel: "icon", url: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+  },
 };
