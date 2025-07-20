@@ -1,6 +1,7 @@
 'use client';
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
+import BlurVignette from '@/components/ui/blur-vignette';
 
 export default function ThreeDCard({content}:{content:any}) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -45,11 +46,21 @@ export default function ThreeDCard({content}:{content:any}) {
         ref={cardRef}
         className="md:w-[240px] w-full h-[300px]  rounded-xl shadow-xl overflow-hidden flex flex-col justify-between transition-transform duration-300 ease-out"
       >
+      <BlurVignette
+      radius="24px"
+        inset="2px"
+        transitionLength="60px"
+        blur="15px"
+        className=" rounded-[2.5rem]"
+        switchView={true}
+      >
+
+
         <img
         src='/logos/dev-1.jpg'
-
-          // src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=80"
-          alt="Portfolio"
+        
+        // src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=80"
+        alt="Portfolio"
           className="w-full h-2/3 object-cover"
         />
         <div className="p-3  flex flex-col items-center">
@@ -57,6 +68,7 @@ export default function ThreeDCard({content}:{content:any}) {
           <h2 className="text-base font-bold">{content.cardTitle}</h2>
           <p className="text-xs mt-1 text-center">{content.cardDesc}</p>
         </div>
+        </BlurVignette>
       </div>
     </div>
   );

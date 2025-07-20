@@ -14,6 +14,8 @@ import HomeBlogSection from "@/components/custom/(home)/blog/home-blog-section";
 import HomeProjectSection from "@/components/custom/(home)/(project)/project-section";
 import TrustedByCompanies from "@/components/mvpblocks/sparkles-logo";
 import { CardCarousel } from "@/components/ui/card-carousel";
+import BlurVignette from "@/components/ui/blur-vignette";
+import Image from "next/image";
 
 export default async function LocalePage({
   params,
@@ -55,6 +57,34 @@ export default async function LocalePage({
         <HeroSection lang={locale} />
         {/* <Scene/> */}
         <AboutCombined locale={locale} />
+   
+        {/* <BlurVignette
+        radius="24px"
+        inset="10px"
+        transitionLength="100px"
+        blur="15px"
+        className=" rounded-[2.5rem]"
+        switchView={true}
+        >
+          <video
+          autoPlay={true}
+          muted
+          controls={true}
+          contextMenu=""
+          loop
+          content="true"
+          className="size-full md:max-w-4xl mx-auto  object-cover transition-all "
+        >
+          <source
+          src="https://player.mux.com/IRyFZ2DG7qxQHdb3eIJW00vVYc7Al8e5L026b8K02zrv7A?metadata-video-title=2+minutes+of+relaxing+music%2C2+minute+meditation+music%2C2+minutes+meditation%2Cmusic+2+minute"
+          
+              // src="https://stream.mux.com/DS00Spx1CV902MCtPj5WknGlR102V5HFkDe/high.mp4"
+
+            // src="https://cdn.pixabay.com/video/2023/10/19/185726-876210695_large.mp4"
+            type="video/mp4"
+          />
+        </video>
+        </BlurVignette> */}
         <KiboHeroVideo/>
       {/* @ts-ignore */}
         <EducationSection locale={locale} />
