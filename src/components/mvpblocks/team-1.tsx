@@ -3,6 +3,8 @@ import { cn } from '@/lib/utils';
 import teamContent from '@/utils/language-data/team-content';
 import { GithubIcon, LinkedinIcon, TwitterIcon } from 'lucide-react';
 import Link from 'next/link';
+import Image from "next/image";
+
 
 const RTL_LANGS = ['ur', 'ar', 'fa', 'he'];
 
@@ -45,6 +47,7 @@ export default function Team1({
 }
 
 // Team member card component
+
 function TeamMemberCard({
   member,
   isRTL,
@@ -60,13 +63,20 @@ function TeamMemberCard({
   isRTL?: boolean;
 }) {
   return (
-    <div className="opacity-100 hover:opacity-75 transition-opacity group h-[420px] w-80 sm:w-96 overflow-hidden rounded-xl bg-card shadow-sm flex flex-col">
+    <div
+      className="opacity-100 hover:opacity-75 transition-opacity group h-[420px] w-80 sm:w-96 overflow-hidden rounded-xl bg-card shadow-sm flex flex-col"
+      itemScope
+      itemType="https://schema.org/Person"
+    >
       <div className="relative h-[200px] w-full overflow-hidden">
-        <img
+        <Image
           src={member.imageUrl}
-          alt={member.name}
+          alt={`${member.name} – ${member.role} at CodeWithTabish`}
+          itemProp="image"
+          fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           className="object-cover object-center w-full h-full transition-transform duration-500 group-hover:scale-105"
+          priority // Optional: prioritize loading for above-the-fold images
         />
       </div>
 
@@ -82,8 +92,8 @@ function TeamMemberCard({
           </div>
         )}
 
-        <h3 className="mb-1 text-xl font-bold">{member.name}</h3>
-        <p className="mb-2 text-sm font-medium text-primary">{member.role}</p>
+        <h3 className="mb-1 text-xl font-bold" itemProp="name">{member.name}</h3>
+        <p className="mb-2 text-sm font-medium text-primary" itemProp="jobTitle">{member.role}</p>
         <div className="mb-4">
           <p className="text-sm text-muted-foreground">{member.bio}</p>
         </div>

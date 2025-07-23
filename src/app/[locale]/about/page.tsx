@@ -1,5 +1,7 @@
 import AboutSection from "@/components/mvpblocks/about-us-1";
-import { Spotlight } from "@/components/mvpblocks/spot-light";
+import { metadata } from "@/lib/seo/about-seo";
+
+export { metadata };
 
 export default async function AboutPage({
   params,

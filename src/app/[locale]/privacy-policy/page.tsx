@@ -1,6 +1,8 @@
 // pages/privacy-policy.tsx (or wherever you want to use it)
 
 import PrivacyPolicyComp from "@/components/custom/(privacy)/privacy-policy-comp";
+import { metadata } from "@/lib/seo/privacy-seo";
+export { metadata }; // Export the metadata for SEO purposes
 
 
 export default async function PrivacyPolicyPage({

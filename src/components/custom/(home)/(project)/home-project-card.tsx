@@ -62,7 +62,7 @@ export default function HomeProjectCard({
   return (
     <motion.article
       className={cn(
-        "w-full space-y-4 rounded-lg p-4 border max-w-2xl overflow-hidden shadow hover:shadow-lg transition-shadow"
+        "w-full space-y-4  rounded-lg p-0 border max-w-2xl overflow-hidden shadow hover:shadow-lg transition-shadow"
       )}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -114,7 +114,7 @@ export default function HomeProjectCard({
               />
             </button>
 
-            <div className="absolute bottom-2 right-2 z-20 flex gap-1.5 rounded-full bg-black/30 backdrop-blur-sm px-2 py-1.5 shadow-sm border border-white/20">
+            <div className="absolute p-3 bottom-2 right-2 z-20 flex gap-1.5 rounded-full bg-black/30 backdrop-blur-sm px-2 py-1.5 shadow-sm border border-white/20">
               {images.map((_, idx) => (
                 <button
                   key={idx}
@@ -135,7 +135,7 @@ export default function HomeProjectCard({
         )}
       </div>
 
-      <div className="space-y-3 text-justify">
+      <div className="space-y-3 text-justify p-3">
         <div className="space-y-2">
           <h2 className="line-clamp-1 font-medium" itemProp="name">
             {title}

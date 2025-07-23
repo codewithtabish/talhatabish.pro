@@ -60,6 +60,24 @@ function renderInlineMarkdown(text: string) {
   return elements;
 }
 
+function parseListItems(rawText: string) {
+  // Split by newlines, but only keep lines that start with - or *
+  return rawText
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(line => /^(\*|\-)\s+/.test(line))
+    .map(line => line.replace(/^(\*|\-)\s+/, ''));
+}
+
+function parseOrderedListItems(rawText: string) {
+  // Split by newlines, but only keep lines that start with 1. 2. etc
+  return rawText
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(line => /^\d+\.\s+/.test(line))
+    .map(line => line.replace(/^\d+\.\s+/, ''));
+}
+
 export default function RichContentRenderer({ blocks }: { blocks: any[] }) {
   return (
     <div className="prose dark:prose-invert max-w-none">
@@ -156,28 +174,42 @@ export default function RichContentRenderer({ blocks }: { blocks: any[] }) {
             );
           }
 
-          if (/^(\*|\-)\s+/.test(rawText)) {
-            const items = rawText.split(/(?:\r?\n)?(?:\*|\-)\s+/).filter(Boolean);
-            return (
-              <ul key={i} className="list-disc list-inside text-[16px] text-gray-800 dark:text-gray-300 my-4 text-justify">
-                {items.map((item:any, idx:any) => (
-                  <li key={idx} className="mb-1">{renderInlineMarkdown(item)}</li>
-                ))}
-              </ul>
-            );
+          // --- FIXED LIST RENDERING ---
+          // Unordered list: lines starting with - or *
+          if (
+            rawText.split('\n').some((line:any) => /^(\*|\-)\s+/.test(line))
+            && !rawText.split('\n').every((line:any) => line.trim() === '')
+          ) {
+            const items = parseListItems(rawText);
+            if (items.length > 0) {
+              return (
+                <ul key={i} className="list-disc list-inside text-[16px] text-gray-800 dark:text-gray-300 my-4 text-justify">
+                  {items.map((item: any, idx: any) => (
+                    <li key={idx} className="mb-1">{renderInlineMarkdown(item)}</li>
+                  ))}
+                </ul>
+              );
+            }
           }
 
-          if (/^\d+\.\s/.test(rawText)) {
-            const items = rawText.split(/(?=\d+\.\s)/g);
-            return (
-              <ol key={i} className="list-decimal list-inside text-[16px] text-gray-800 dark:text-gray-300 my-4 text-justify">
-                {items.map((item:any, idx:any) => (
-                  <li key={idx} className="mb-1">{renderInlineMarkdown(item.replace(/^\d+\.\s/, ''))}</li>
-                ))}
-              </ol>
-            );
+          // Ordered list: lines starting with 1. 2. etc
+          if (
+            rawText.split('\n').some((line:any) => /^\d+\.\s+/.test(line))
+            && !rawText.split('\n').every((line:any) => line.trim() === '')
+          ) {
+            const items = parseOrderedListItems(rawText);
+            if (items.length > 0) {
+              return (
+                <ol key={i} className="list-decimal list-inside text-[16px] text-gray-800 dark:text-gray-300 my-4 text-justify">
+                  {items.map((item: any, idx: any) => (
+                    <li key={idx} className="mb-1">{renderInlineMarkdown(item)}</li>
+                  ))}
+                </ol>
+              );
+            }
           }
 
+          // Inline image
           const inlineImage = rawText.match(/!\[([^\]]*)\]\(([^)]+)\)/);
           if (inlineImage) {
             const [, alt, src] = inlineImage;
@@ -195,6 +227,7 @@ export default function RichContentRenderer({ blocks }: { blocks: any[] }) {
             );
           }
 
+          // Inline video
           const inlineVideo = rawText.match(/\[video\]\(([^)]+)\)/);
           if (inlineVideo) {
             const [, src] = inlineVideo;
@@ -211,6 +244,7 @@ export default function RichContentRenderer({ blocks }: { blocks: any[] }) {
             );
           }
 
+          // Default: paragraph
           return (
             <p key={i} className="text-gray-700 dark:text-gray-300 text-[15px] leading-relaxed my-3 text-justify break-words whitespace-pre-wrap">
               {renderInlineMarkdown(rawText)}

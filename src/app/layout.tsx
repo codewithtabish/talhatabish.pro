@@ -11,3 +11,5 @@ export default function RootLayout({
   // No <html> or <body> here!
   return children;
 }
+
+

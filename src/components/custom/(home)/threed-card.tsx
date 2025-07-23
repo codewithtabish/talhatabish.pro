@@ -2,6 +2,7 @@
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import BlurVignette from '@/components/ui/blur-vignette';
+import Image from 'next/image';
 
 export default function ThreeDCard({content}:{content:any}) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -56,8 +57,10 @@ export default function ThreeDCard({content}:{content:any}) {
       >
 
 
-        <img
+        <Image
         src='/logos/dev-1.jpg'
+        width={500}
+        height={500}
         
         // src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=80"
         alt="Portfolio"

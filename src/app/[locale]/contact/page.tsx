@@ -1,5 +1,7 @@
 import ContactUsComp from '@/components/mvpblocks/contact-us-1'
 import React from 'react'
+import { metadata } from '@/lib/seo/contact-seo';
+export { metadata };
 
 export default async function ContactPage({
   params,

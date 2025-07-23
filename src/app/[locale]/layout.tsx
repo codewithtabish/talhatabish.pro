@@ -61,3 +61,24 @@ export default async function LocaleLayout({
 
 
 // https://og-playground.vercel.app/
+// https://metatags.io/
+
+
+
+
+// Write a fully professional, long-form blog post in pure Markdown format. Use the following structure and formatting rules:
+
+// - Use `#` for the main blog title (only once, at the top).
+// - Write a short introduction paragraph after the title.
+// - Use `##` for each main section heading.
+// - For each section, write detailed, professional content in plain text.
+// - Where relevant, include one or more images inside the blog content using Markdown image syntax: ![Alt text](https://your-image-url.com/image.jpg)
+// - Use `-` for bullet points where appropriate.
+// - Use numbered lists (`1.`, `2.`, etc.) where steps or order matter.
+// - Use `**` for bold text and `*` for italic text where emphasis is needed.
+// - Use code blocks (triple backticks) for code examples if relevant.
+// - Use blockquotes (`>`) for quotes or highlighting important notes.
+// - End with a "Further Reading" section (with Markdown links) and a short conclusion.
+// - Do NOT use HTML, tables, or any other formatting—only Markdown as described above.
+
+// The blog post title is: [YOUR_TITLE_HERE]

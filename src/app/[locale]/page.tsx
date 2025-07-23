@@ -16,6 +16,8 @@ import TrustedByCompanies from "@/components/mvpblocks/sparkles-logo";
 import { CardCarousel } from "@/components/ui/card-carousel";
 import BlurVignette from "@/components/ui/blur-vignette";
 import Image from "next/image";
+import CardFlip from "@/components/mvpblocks/card-flip";
+import BlogsList from "@/components/custom/(blog)/blog-list";
 
 export default async function LocalePage({
   params,
@@ -105,6 +107,7 @@ export default async function LocalePage({
         {/*  */}
         <HomeProjectSection locale={locale}/>
         <HomeBlogSection locale={locale}/>
+        <BlogsList locale={locale}/>
         {/* <TestimonialsCarousel/> */}
         <Feedbacks locale={locale} />
       </div>
