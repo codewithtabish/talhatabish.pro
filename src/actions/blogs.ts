@@ -72,7 +72,7 @@ export async function getAllBlogs(locale: string): Promise<Blog[]> {
       headers: {
         'Accept': 'application/json',
       },
-      next: { revalidate:  60 * 60 * 24 * 60; // 60 days in seconds }, // Cache for 1 hour
+      next: { revalidate: 60 * 60 * 24 * 60 }, // 60 days in seconds
     });
 
     if (!res.ok) {
