@@ -1,4 +1,4 @@
-// app/actions/getProjects.ts
+// app/actions/get-single-project.ts
 'use server';
 
 export type Project = {
@@ -50,13 +50,12 @@ export async function getProjectBySlug(
   const url = `${STRAPI_URL}/projects?filters[slug][$eq]=${encodeURIComponent(
     slug
   )}&locale=${locale}&populate=seo`;
-  console.log('My url is ',url)
+  console.log('My url is ', url);
   try {
-    const res = await fetch(url,{
-        next: {
+    const res = await fetch(url, {
+      next: {
         tags: ['singleProject'],
-        revalidate:  60 * 60 * 24 * 60; // 60 days in seconds, // 30 days in seconds
-
+        revalidate: 60 * 60 * 24 * 60 // 60 days in seconds
       },
     });
     if (!res.ok) {
