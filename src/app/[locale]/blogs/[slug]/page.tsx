@@ -52,6 +52,7 @@ export default async function SingleBlogSlug({
           mx-auto
           px-2
           sm:px-4
+          py-20
           md:px-6
           lg:px-8
           xl:px-10

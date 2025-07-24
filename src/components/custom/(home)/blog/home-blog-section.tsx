@@ -4,7 +4,7 @@ import BlogSectionHeader from './blog-section-header'
 const HomeBlogSection = ({locale='en'}:{locale:any}) => {
   return (
     <div>
-        <BlogSectionHeader locale={locale}/>
+        <BlogSectionHeader locale={locale} />
         
       
     </div>

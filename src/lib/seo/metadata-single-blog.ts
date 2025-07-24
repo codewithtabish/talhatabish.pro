@@ -7,6 +7,7 @@ import { Metadata } from "next";
  */
 export function resolveMetadataFromBlogSEO(blogSeo: any): Metadata {
   return {
+    // console.log(blogSeo.metaTitle)
     title: blogSeo?.metaTitle || blogSeo?.ogTitle || blogSeo?.twitterTitle,
     description: blogSeo?.metaDescription || blogSeo?.ogDescription || blogSeo?.twitterDescription,
     keywords: blogSeo?.metaKeywords?.split(",").map((k: string) => k.trim()),

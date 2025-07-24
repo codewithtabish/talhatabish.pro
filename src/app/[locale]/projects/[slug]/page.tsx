@@ -77,6 +77,7 @@ export default async function SingleProjectBySlug({ params }: Props) {
           2xl:max-w-screen-2xl
           mx-auto
           px-2
+          py-20
           sm:px-4
           md:px-6
           lg:px-8
@@ -93,7 +94,7 @@ export default async function SingleProjectBySlug({ params }: Props) {
               alt={project.title}
               fill
               priority
-              sizes="100vw"
+              sizes="50vw"
               className="object-cover object-center"
             />
           </div>

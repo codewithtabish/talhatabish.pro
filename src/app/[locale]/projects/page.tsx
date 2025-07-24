@@ -1,17 +1,23 @@
-import React from 'react'
+import { Suspense } from "react";
+import ProjectsGrid from '@/components/custom/(home)/(project)/home-project-grid';
+import { ProjectPageTopContent } from '@/components/custom/(projects)/project-top-content';
+import React from 'react';
+import ProjectListSkeleton from "@/components/custom/(skeletons)/project-list-seketon";
 
 export default async function ProjectsPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;  return (
+  const { locale } = await params;
+  return (
     <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit rem praesentium, tempora consequuntur, itaque repellendus nesciunt suscipit maiores excepturi in animi libero neque optio necessitatibus possimus numquam reprehenderit fuga dolor.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit rem praesentium, tempora consequuntur, itaque repellendus nesciunt suscipit maiores excepturi in animi libero neque optio necessitatibus possimus numquam reprehenderit fuga dolor.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit rem praesentium, tempora consequuntur, itaque repellendus nesciunt suscipit maiores excepturi in animi libero neque optio necessitatibus possimus numquam reprehenderit fuga dolor.
-      
+      <ProjectPageTopContent locale={locale} />
+      <div className='min-h-screen'>
+        <Suspense fallback={<ProjectListSkeleton count={6} />}>
+          <ProjectsGrid locale={locale} isHome={false} />
+        </Suspense>
+      </div>
     </div>
-  )
+  );
 }
-

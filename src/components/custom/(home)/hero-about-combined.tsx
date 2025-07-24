@@ -12,7 +12,7 @@ const AboutCombined = ({ locale = "en" }) => {
   return (
     <section className="w-full max-w-screen-xl mx-auto px-4 lg:px-10">
       <div className={`w-full text-${isRTL ? "right" : "left"}`}>
-        <h3 className="text-2xl font-bold mb-6 text-neutral-800">
+        <h3 className="text-2xl font-bold  text-neutral-800">
           {
             // @ts-ignore
             heroAbout[locale]?.title

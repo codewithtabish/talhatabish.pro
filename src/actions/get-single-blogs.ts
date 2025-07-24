@@ -82,7 +82,7 @@ export async function getBlogBySlug(slug: string, locale: string): Promise<Blog 
       headers: {
         'Accept': 'application/json',
       },
-      // next: { revalidate: 3600 }, // Cache for 1 hour
+      next: { revalidate:  60 * 60 * 24 * 60 }, // Cache for 1 hour
     });
 
     if (!res.ok) {

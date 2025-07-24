@@ -55,7 +55,7 @@ export async function getProjectBySlug(
     const res = await fetch(url,{
         next: {
         tags: ['singleProject'],
-        // revalidate: 2592000, // 30 days in seconds
+        revalidate:  60 * 60 * 24 * 60; // 60 days in seconds, // 30 days in seconds
 
       },
     });

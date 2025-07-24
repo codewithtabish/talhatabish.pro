@@ -8,8 +8,8 @@ export default function TrustedByCompanies() {
   const fillColor = isDark ? '#ffffff' : '#0f172a'; // white for dark, slate-900 for light
   
   return (
-    <div className="h-screen  overflow-hidden  bg-white dark:bg-[#020817]">
-      <div className="mx-auto mt-32 w-screen max-w-2xl">
+    <div className="   bg-white dark:bg-[#020817] ">
+      <div className="mx-auto  w-screen max-w-4xl">
         <div className="text-center text-3xl ">
           <span className="text-rose-200">Trusted by experts.</span>
 

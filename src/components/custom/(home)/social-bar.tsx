@@ -49,6 +49,14 @@ export function SocialBar() {
   const currentLocale = pathname.split("/")[1] || "en";
   const [hide, setHide] = useState(false);
 
+  // Hide on /blogs* or /projects* (any locale)
+  const shouldHideForRoute = (() => {
+    const parts = pathname.split("/");
+    // e.g. ['', 'en', 'blogs', ...] or ['', 'en', 'projects', ...]
+    const section = parts[2] || "";
+    return section.startsWith("blogs") || section.startsWith("projects");
+  })();
+
   useEffect(() => {
     function onScroll() {
       const scrollY = window.scrollY || window.pageYOffset;
@@ -61,6 +69,8 @@ export function SocialBar() {
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  if (shouldHideForRoute) return null;
 
   return (
     <TooltipProvider>

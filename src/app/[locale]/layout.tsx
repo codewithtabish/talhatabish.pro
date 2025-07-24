@@ -42,7 +42,8 @@ export default async function LocaleLayout({
       <body className="antialiased dark:bg-[#020817] dark:text-gray-300 overflow-x-hidden">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TooltipProvider delayDuration={0}>
-            <LogoNavbar />
+            <LanguageSwitcher/>
+            {/* <LogoNavbar /> */}
             <SocialBar />
             <main className="flex w-full max-w-screen-md md:max-w-3xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto flex-col min-h-[100dvh] px-4 sm:px-6 md:px-8">
               {children}

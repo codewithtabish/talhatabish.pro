@@ -79,7 +79,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ locale = "en" }) => {
             </div>
           ))}
         </AnimatedList>
-      <IconCloudDemo/>
+      {/* <IconCloudDemo/> */}
       </div>
     </section>
   );

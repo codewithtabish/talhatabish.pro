@@ -47,7 +47,7 @@ export function IconCloudDemo() {
   );
 
   return (
-        <div className="w-full px-12 relative flex items-center justify-center overflow-hidden">
+        <div className="w-full h-[300px] px-12 relative flex items-center justify-center overflow-hidden">
 
       <IconCloud images={images} key={images.join(",")}  />
     </div>
