@@ -80,7 +80,7 @@ function TeamMemberCard({
         />
       </div>
 
-      <div className="flex h-[220px] flex-col p-5">
+      <div className="flex h-[240px] flex-col p-5">
         {member.location && (
           <div
             className={`mb-1 flex items-center text-xs text-muted-foreground ${
@@ -95,18 +95,18 @@ function TeamMemberCard({
         <h3 className="mb-1 text-xl font-bold" itemProp="name">{member.name}</h3>
         <p className="mb-2 text-sm font-medium text-primary" itemProp="jobTitle">{member.role}</p>
         <div className="mb-4">
-          <p className="text-sm text-muted-foreground">{member.bio}</p>
+          <p className="text-sm text-muted-foreground ">{member.bio}</p>
         </div>
-        <div className="mt-auto">
+        <div className="mt-auto ">
           {member.socialLinks && (
-            <div className={`flex space-x-3 ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}>
+            <div className={`flex space-x-3  ${isRTL ? 'flex-row-reverse  space-x-reverse' : ''}`}>
               {member.socialLinks.map((link) => (
                 <Link
                   key={link.platform}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-muted-foreground transition-all hover:bg-primary hover:text-primary-foreground"
+                  className="flex h-8 w-8 items-center justify-center rounded-full  bg-muted text-muted-foreground transition-all hover:bg-primary hover:text-primary-foreground"
                 >
                   {link.platform === 'github' && <GithubIcon className="h-4 w-4" />}
                   {link.platform === 'twitter' && <TwitterIcon className="h-4 w-4" />}

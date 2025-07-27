@@ -35,6 +35,8 @@ function FAQItem({ question, answer, index }: FAQItemProps) {
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         className="flex w-full items-center justify-between gap-4 px-6 py-4"
+        aria-expanded={isOpen}
+        aria-controls={`faq-answer-${index}`}
       >
         <h3
           className={cn(
@@ -66,6 +68,7 @@ function FAQItem({ question, answer, index }: FAQItemProps) {
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
+            id={`faq-answer-${index}`}
             initial={{ height: 0, opacity: 0 }}
             animate={{
               height: 'auto',
@@ -140,12 +143,12 @@ export default function Faq3({ lang = "en" }: Faq3Props) {
   const { headerTitle, headerDesc, faqs } = content;
 
   return (
-    <section className="relative w-full overflow-hidden bg-background py-16">
+    <section className="relative w-full overflow-hidden bg-background py-8 sm:py-12 md:py-16">
       {/* Decorative elements */}
-      <div className="absolute -left-20 top-20 h-64 w-64 rounded-full bg-primary/5 blur-3xl" />
-      <div className="absolute -right-20 bottom-20 h-64 w-64 rounded-full bg-primary/5 blur-3xl" />
+      <div className="absolute -left-20 top-20 h-64 w-64 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
+      <div className="absolute -right-20 bottom-20 h-64 w-64 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
 
-      <div className="container relative mx-auto max-w-6xl px-4">
+      <div className="container relative mx-auto max-w-6xl px-2 sm:px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -159,10 +162,10 @@ export default function Faq3({ lang = "en" }: Faq3Props) {
             {badgeText[lang] || badgeText["en"]}
           </Badge>
 
-          <h1 className="mb-3 bg-gradient-to-r from-primary to-rose-400 bg-clip-text text-3xl font-bold text-transparent">
+          <h1 className="mb-3 bg-gradient-to-r from-primary to-rose-400 bg-clip-text text-2xl sm:text-3xl md:text-4xl font-bold text-transparent">
             {headerTitle}
           </h1>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm sm:text-base text-muted-foreground">
             {headerDesc}
           </p>
         </motion.div>

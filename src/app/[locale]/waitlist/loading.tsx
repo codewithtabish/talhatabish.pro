@@ -4,76 +4,78 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Loading() {
   return (
-    <main className="relative items-center justify-center overflow-hidden">
-      {/* Background gradients */}
-      <div
-        className="absolute left-0 top-0 h-[500px] w-[500px] rounded-full opacity-20 blur-[120px] pointer-events-none"
-        style={{
-          background: `radial-gradient(circle at center, #e60a64, transparent 70%)`,
-        }}
-      />
-      <div
-        className="absolute bottom-0 right-0 h-[300px] w-[300px] rounded-full opacity-10 blur-[100px] pointer-events-none"
-        style={{
-          background: `radial-gradient(circle at center, #e60a64, transparent 70%)`,
-        }}
-      />
+    <div
+      className="
+        w-full
+        max-w-[100vw]
+        sm:max-w-screen-sm
+        md:max-w-screen-md
+        lg:max-w-screen-lg
+        xl:max-w-screen-xl
+        2xl:max-w-screen-2xl
+        mx-auto
+        px-2
+        sm:px-4
+        md:px-6
+        lg:px-8
+        xl:px-10
+        2xl:px-12
+        py-8
+        sm:py-12
+        md:py-16
+        lg:py-20
+        xl:py-24
+        2xl:py-32
+        flex flex-col items-center
+      "
+    >
+      {/* Heading Skeleton */}
+      <Skeleton className="h-12 w-2/3 max-w-lg mb-8 rounded mx-auto" />
 
-      <div className="relative z-[100] mx-auto w-full max-w-7xl px-2 sm:px-6 py-10 text-center">
-        {/* Badge Skeleton */}
-        <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-primary/10 bg-gradient-to-r from-primary/15 to-primary/5 px-4 py-2 backdrop-blur-sm">
-          <Skeleton className="h-6 w-6 rounded-full" />
-          <Skeleton className="h-4 w-20 rounded" />
-          <Skeleton className="h-4 w-4 rounded" />
-        </div>
-
-        {/* Heading Skeleton */}
-        <Skeleton className="h-12 w-2/3 mx-auto mb-4 rounded" />
-
-        {/* Subtitle Skeleton */}
-        <Skeleton className="h-6 w-1/2 mx-auto mb-12 rounded" />
-
-        {/* Email Form Skeleton */}
-        <div className="mx-auto flex flex-col gap-4 sm:flex-row max-w-xl mb-8">
-          <Skeleton className="h-12 w-full rounded-xl" />
-          <Skeleton className="h-12 w-40 rounded-xl" />
-        </div>
-
-        {/* Avatars and joined count Skeleton */}
-        <div className="mt-10 flex items-center justify-center gap-1">
-          <div className="flex -space-x-3">
-            {[...Array(4)].map((_, i) => (
-              <Skeleton key={i} className="h-10 w-10 rounded-full border-2" />
-            ))}
-          </div>
-          <Skeleton className="h-4 w-24 ml-2 rounded" />
-        </div>
-
-        {/* Tabs Skeleton */}
-        <div className="md:max-w-2xl mx-auto mt-12">
-          <div className="flex gap-4">
-            {[...Array(4)].map((_, i) => (
-              <Skeleton key={i} className="h-10 w-32 rounded-xl" />
-            ))}
-          </div>
-        </div>
-
-        {/* Waitlist Projects Skeleton */}
-        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 w-full">
-          {[...Array(3)].map((_, idx) => (
-            <div key={idx} className="text-left">
-              <Skeleton className="mb-4 h-40 w-full rounded-lg" />
-              <Skeleton className="mb-2 h-6 w-1/2 rounded" />
-              <Skeleton className="mb-2 h-4 w-2/3 rounded" />
-              <div className="flex items-center justify-between text-xs mb-2">
-                <Skeleton className="h-6 w-20 rounded-full" />
-                <Skeleton className="h-4 w-16 rounded" />
-              </div>
-              <Skeleton className="h-8 w-32 mt-2 rounded" />
-            </div>
-          ))}
-        </div>
+      {/* Badge Skeleton */}
+      <div className="flex justify-center mb-8">
+        <Skeleton className="h-8 w-40 rounded-full" />
       </div>
-    </main>
+
+      {/* Subtitle Skeleton */}
+      <Skeleton className="h-6 w-3/4 max-w-md mx-auto mb-10 rounded" />
+
+      {/* Email Form Skeleton */}
+      <div className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto mb-10 w-full">
+        <Skeleton className="h-12 w-full sm:w-2/3 rounded" />
+        <Skeleton className="h-12 w-full sm:w-1/3 rounded" />
+      </div>
+
+      {/* Avatars and joined count Skeleton */}
+      <div className="flex items-center justify-center gap-2 mb-10">
+        {[...Array(4)].map((_, i) => (
+          <Skeleton key={i} className="h-10 w-10 rounded-full" />
+        ))}
+        <Skeleton className="h-6 w-24 rounded ml-2" />
+      </div>
+
+      {/* Tabs Skeleton */}
+      <div className="flex gap-4 mb-10 max-w-2xl mx-auto">
+        {[...Array(5)].map((_, i) => (
+          <Skeleton key={i} className="h-8 w-24 rounded" />
+        ))}
+      </div>
+
+      {/* Projects Skeleton */}
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl mx-auto">
+        {[...Array(3)].map((_, i) => (
+          <div key={i} className="flex flex-col gap-2">
+            <Skeleton className="h-40 w-full rounded-lg" />
+            <Skeleton className="h-6 w-1/2 rounded" />
+            <Skeleton className="h-4 w-3/4 rounded" />
+            <div className="flex items-center gap-2">
+              <Skeleton className="h-6 w-20 rounded-full" />
+              <Skeleton className="h-4 w-16 rounded" />
+            </div>
+            <Skeleton className="h-8 w-32 rounded" />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

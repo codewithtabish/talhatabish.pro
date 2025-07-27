@@ -1,27 +1,29 @@
+import BackButtonComp from "@/components/custom/(general)/back-comp";
 import AboutSection from "@/components/mvpblocks/about-us-1";
-import { metadata } from "@/lib/seo/about-seo";
+import { getAboutMetadata } from "@/lib/seo/about-seo";
 
-export { metadata };
+// Dynamic SEO metadata for About page (Next.js 15: params is a Promise)
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return getAboutMetadata(locale);
+}
 
-export default async function AboutPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
 
   return (
     <main className="w-full min-h-screen flex justify-center bg-background overflow-x-hidden">
-            {/* <Spotlight /> */}
-      
+      <BackButtonComp locale={locale}/>
       <div
         className="
           w-full
-          max-w-screen-sm
-          sm:max-w-screen-md
-          md:max-w-screen-lg
-          lg:max-w-screen-xl
+          max-w-[100vw]
+          sm:max-w-screen-sm
+          md:max-w-screen-md
+          lg:max-w-screen-lg
+          xl:max-w-screen-xl
           2xl:max-w-screen-2xl
+          mx-auto
           px-2
           sm:px-4
           md:px-8
@@ -35,7 +37,6 @@ export default async function AboutPage({
       >
         {/* @ts-ignore */}
         <AboutSection locale={locale} />
-        {/* Or <AboutUs1 locale={locale} /> */}
       </div>
     </main>
   );

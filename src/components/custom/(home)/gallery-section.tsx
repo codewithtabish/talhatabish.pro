@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React from 'react';
-import galleryContent from '@/utils/language-data/gallery-content';
-import { motion } from 'framer-motion';
-import ClientGallery from './gallery-client';
+import React from "react";
+import galleryContent from "@/utils/language-data/gallery-content";
+import { motion } from "framer-motion";
+import { CardCarousel } from "@/components/ui/card-carousel";
 
 type Props = {
   locale: keyof typeof galleryContent;
@@ -16,19 +16,47 @@ const sectionVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
 };
+
+// Self-contained images array
+const images = [
+  { src: "/team/talha.jpg", alt: "Image 1" },
+  { src: "/team/ayesha.jpg", alt: "Image 2" },
+  { src: "/team/sudais.jpg", alt: "Image 3" },
+  { src: "/team/t2.jpeg", alt: "Image 4" },
+];
 
 const GallerySection: React.FC<Props> = ({ locale }) => {
   const content = galleryContent[locale] || galleryContent.en;
 
   return (
-    <section id="gallery" className=" lg:px-10">
-      <div className="max-w-6xl mx-auto text-center">
+    <section
+      id="gallery"
+      className="
+        w-full
+        max-w-[100vw]
+        sm:max-w-screen-sm
+        md:max-w-screen-md
+        lg:max-w-screen-lg
+        xl:max-w-screen-xl
+        2xl:max-w-screen-2xl
+        mx-auto
+        px-2
+        sm:px-4
+        md:px-8
+        py-8
+        sm:py-12
+        md:py-16
+        transition-all
+      "
+    >
+      <div className="max-w-4xl mx-auto text-center mb-10">
         <motion.h2
-        // @ts-ignore
+                // @ts-ignore
+
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
@@ -51,8 +79,7 @@ const GallerySection: React.FC<Props> = ({ locale }) => {
         </motion.h3>
 
         <motion.p
-                // @ts-ignore
-
+        // @ts-ignore
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
@@ -61,8 +88,14 @@ const GallerySection: React.FC<Props> = ({ locale }) => {
         >
           {content.section.desc}
         </motion.p>
-  
       </div>
+
+      <CardCarousel
+        images={images}
+        autoplayDelay={2000}
+        showPagination={true}
+        showNavigation={true}
+      />
     </section>
   );
 };

@@ -45,7 +45,7 @@ const AboutSection: React.FC<Props> = ({ locale = "en" }) => {
 
   return (
     <section
-      className="relative w-full  pt-10 pb-6 sm:pt-16 sm:pb-10 overflow-x-hidden"
+      className="relative w-full pt-10 pb-6 sm:pt-16 sm:pb-10 overflow-x-hidden"
       dir={isRTL ? "rtl" : "ltr"}
     >
       <Spotlight />
@@ -75,7 +75,7 @@ const AboutSection: React.FC<Props> = ({ locale = "en" }) => {
             initial={{ opacity: 0, y: 40 }}
             animate={missionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="relative z-10 grid gap-6 sm:gap-10 md:gap-12 grid-cols-1 lg:grid-cols-2 "
+            className="relative z-10 grid gap-6 sm:gap-10 md:gap-12 grid-cols-1 lg:grid-cols-2"
           >
             {/* Mission */}
             <motion.div
@@ -167,7 +167,7 @@ const AboutSection: React.FC<Props> = ({ locale = "en" }) => {
             </p>
           </motion.div>
           {/* Responsive grid for core value cards */}
-          <div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+          <div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2  2xl:grid-cols-4">
             {content.values?.map((value, index) => {
               // @ts-ignore
               const IconComponent = iconComponents[value.icon];

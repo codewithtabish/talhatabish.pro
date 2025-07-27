@@ -19,16 +19,13 @@ interface CarouselProps {
   autoplayDelay?: number;
   showPagination?: boolean;
   showNavigation?: boolean;
-  title?: string;
-  subtitle?: string;
 }
 
-export const CardCarousel: React.FC<CarouselProps> = ({
+const ClientGallery: React.FC<CarouselProps> = ({
   images,
   autoplayDelay = 2000,
   showPagination = true,
   showNavigation = true,
-  title = "Gallery",
 }) => {
   if (!images || images.length === 0) {
     return (
@@ -50,10 +47,7 @@ export const CardCarousel: React.FC<CarouselProps> = ({
   `;
 
   return (
-    <section
-      className="w-full py-12"
-      aria-label={title}
-    >
+    <section className="w-full py-4" aria-label="Gallery Carousel">
       <style>{css}</style>
       <div className="
         w-full
@@ -64,8 +58,9 @@ export const CardCarousel: React.FC<CarouselProps> = ({
         xl:max-w-screen-xl
         2xl:max-w-4xl
         mx-auto
-        p-4
-        md:p-8
+        px-0
+        sm:px-2
+        md:px-4
       ">
         <Swiper
           spaceBetween={24}
@@ -117,3 +112,5 @@ export const CardCarousel: React.FC<CarouselProps> = ({
     </section>
   );
 };
+
+export default ClientGallery;

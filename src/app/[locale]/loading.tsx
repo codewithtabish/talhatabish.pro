@@ -1,11 +1,12 @@
 // app/[locale]/loading.tsx or app/loading.tsx
+"use client";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTheme } from "next-themes";
 
-
 export default function Loading() {
-;  // Optional: use theme for background if you want
+  // Optional: use theme for background if you want
+  const { theme } = useTheme();
 
   return (
     <main className="w-full min-h-screen flex justify-center bg-background">

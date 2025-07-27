@@ -1,5 +1,4 @@
-import { metadata } from "@/lib/seo/seo-data";
-export { metadata };
+
 
 
 

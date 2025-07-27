@@ -3,10 +3,23 @@ import { getDirection } from "@/lib/loacalDirection";
 import LanguageSwitcher from "@/components/custom/language-switcher";
 import Navbar from "@/components/custom/(home)/navbar";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import LogoNavbar from "@/components/custom/(general)/logo-navbar";
 import { SocialBar } from "@/components/custom/(home)/social-bar";
 import Footer from "@/components/mvpblocks/footer-4col";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { getSiteMetadata } from "@/lib/seo/seo-data";
+
+// --- Allowed locales and type ---
+const allowedLocales = [
+  "en", "ur", "ar", "fr", "zh", "de", "ja", "es"
+] as const;
+type LocaleType = typeof allowedLocales[number];
+
+// Dynamic, locale-aware SEO metadata
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const safeLocale = (allowedLocales.includes(locale as LocaleType) ? locale : "en") as LocaleType;
+  return getSiteMetadata(safeLocale);
+}
 
 export default async function LocaleLayout({
   children,
@@ -16,12 +29,13 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const dir = getDirection(locale);
+  const safeLocale = (allowedLocales.includes(locale as LocaleType) ? locale : "en") as LocaleType;
+  const dir = getDirection(safeLocale);
 
   return (
-    <html lang={locale} dir={dir} suppressHydrationWarning>
+    <html lang={safeLocale} dir={dir} suppressHydrationWarning>
       <head>
-        {/* JSON-LD structured data here */}
+        {/* JSON-LD structured data for SEO */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -39,47 +53,39 @@ export default async function LocaleLayout({
           }}
         />
       </head>
-      <body className="antialiased dark:bg-[#020817] dark:text-gray-300 overflow-x-hidden">
+      <body className="antialiased dark:bg-[#020817] dark:text-gray-300 text-gray-900 min-h-screen overflow-x-hidden">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TooltipProvider delayDuration={0}>
-            <LanguageSwitcher/>
+            <LanguageSwitcher />
             {/* <LogoNavbar /> */}
             <SocialBar />
-            <main className="flex w-full max-w-screen-md md:max-w-3xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto flex-col min-h-[100dvh] px-4 sm:px-6 md:px-8">
+            <main
+              className="
+                flex flex-col
+                min-h-screen
+                w-full
+                container
+                mx-auto
+                px-2
+                sm:px-4
+                md:px-6
+                lg:px-8
+                xl:px-10
+                2xl:px-12
+                py-4
+                items-center
+                justify-start
+                transition-all
+              "
+            >
               {children}
             </main>
-            <Navbar locale={locale} />
+            <Navbar locale={safeLocale} />
             {/* @ts-ignore */}
-            <Footer locale={locale} />
+            <Footer locale={safeLocale} />
           </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
   );
 }
-
-
-
-
-// https://og-playground.vercel.app/
-// https://metatags.io/
-
-
-
-
-// Write a fully professional, long-form blog post in pure Markdown format. Use the following structure and formatting rules:
-
-// - Use `#` for the main blog title (only once, at the top).
-// - Write a short introduction paragraph after the title.
-// - Use `##` for each main section heading.
-// - For each section, write detailed, professional content in plain text.
-// - Where relevant, include one or more images inside the blog content using Markdown image syntax: ![Alt text](https://your-image-url.com/image.jpg)
-// - Use `-` for bullet points where appropriate.
-// - Use numbered lists (`1.`, `2.`, etc.) where steps or order matter.
-// - Use `**` for bold text and `*` for italic text where emphasis is needed.
-// - Use code blocks (triple backticks) for code examples if relevant.
-// - Use blockquotes (`>`) for quotes or highlighting important notes.
-// - End with a "Further Reading" section (with Markdown links) and a short conclusion.
-// - Do NOT use HTML, tables, or any other formatting—only Markdown as described above.
-
-// The blog post title is: [YOUR_TITLE_HERE]

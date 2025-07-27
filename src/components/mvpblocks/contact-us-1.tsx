@@ -116,40 +116,40 @@ export default function ContactUsComp({ locale = 'en' }: Props) {
     <main>
       <section
         aria-labelledby="contact-heading"
-        className="relative w-full overflow-hidden bg-background py-16 md:py-24"
+        className="relative w-full overflow-hidden bg-background py-12 sm:py-16 md:py-24"
       >
         {/* Background gradients */}
         <div
-          className="absolute left-0 top-0 h-[500px] w-[500px] rounded-full opacity-20 blur-[120px]"
+          className="absolute left-0 top-0 h-[400px] w-[400px] rounded-full opacity-20 blur-[120px] pointer-events-none"
           style={{
             background: `radial-gradient(circle at center, #e60a64, transparent 70%)`,
           }}
         />
         <div
-          className="absolute bottom-0 right-0 h-[300px] w-[300px] rounded-full opacity-10 blur-[100px]"
+          className="absolute bottom-0 right-0 h-[250px] w-[250px] rounded-full opacity-10 blur-[100px] pointer-events-none"
           style={{
             background: `radial-gradient(circle at center, #e60a64, transparent 70%)`,
           }}
         />
 
-        <div className="container relative z-10 mx-auto px-4 md:px-6">
-          <div className="mx-auto max-w-5xl overflow-hidden rounded-[28px] border border-border/40  backdrop-blur-sm">
+        <div className="container relative z-10 mx-auto px-2 sm:px-4 md:px-6">
+          <div className="mx-auto max-w-5xl overflow-hidden  backdrop-blur-sm">
             <div className="grid md:grid-cols-2">
-              <div className="relative p-6 md:p-10" ref={formRef}>
+              <div className="relative p-6 sm:p-8 md:p-10" ref={formRef}>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.5, delay: 0.1 }}
-                  className="flex w-full gap-2"
+                  className="flex w-full gap-2 flex-wrap"
                 >
                   <h1
                     id="contact-heading"
-                    className="mb-2 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl"
+                    className="mb-2 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-3xl sm:text-4xl font-bold tracking-tight text-transparent md:text-5xl"
                   >
                     {content.heading}
                   </h1>
                   {content.headingAccent && (
-                    <span className="relative z-10 w-full text-4xl font-bold italic tracking-tight text-primary md:text-5xl">
+                    <span className="relative z-10 w-full text-3xl sm:text-4xl font-bold italic tracking-tight text-primary md:text-5xl">
                       {content.headingAccent}
                     </span>
                   )}
@@ -297,12 +297,12 @@ export default function ContactUsComp({ locale = 'en' }: Props) {
                 initial={{ opacity: 0, x: 20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className="relative my-8 flex items-center justify-center overflow-hidden pr-8"
+                className="relative my-8 flex items-center justify-center overflow-hidden pr-0 md:pr-8"
               >
                 <div className="flex flex-col items-center justify-center overflow-hidden">
-                  <article className="relative mx-auto h-[350px] min-h-60 max-w-[450px] overflow-hidden rounded-3xl border bg-gradient-to-b from-[#e60a64] to-[#e60a64]/5 p-6 text-3xl tracking-tight text-white md:h-[450px] md:min-h-80 md:p-8 md:text-4xl md:leading-[1.05] lg:text-5xl">
+                  <article className="relative mx-auto h-[300px] min-h-60 max-w-[350px] overflow-hidden rounded-3xl border bg-gradient-to-b from-[#e60a64] to-[#e60a64]/5 p-6 text-2xl sm:text-3xl md:h-[400px] md:min-h-80 md:p-8 md:text-4xl md:leading-[1.05] lg:text-5xl">
                     {content.brandMessage}
-                    <div className="absolute -bottom-20 -right-20 z-10 mx-auto flex h-full w-full max-w-[300px] items-center justify-center transition-all duration-700 hover:scale-105 md:-bottom-28 md:-right-28 md:max-w-[550px]">
+                    <div className="absolute -bottom-20 -right-20 z-10 mx-auto flex h-full w-full max-w-[200px] items-center justify-center transition-all duration-700 hover:scale-105 md:-bottom-28 md:-right-28 md:max-w-[350px]">
                       <Earth
                         scale={1.1}
                         baseColor={[1, 0, 0.3]}

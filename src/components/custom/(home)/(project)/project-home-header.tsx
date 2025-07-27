@@ -1,28 +1,59 @@
 "use client";
 
+import React from "react";
 import projectsContent from "@/utils/language-data/project-content";
-
+import { motion } from "framer-motion";
 
 type Props = {
   locale?: keyof typeof projectsContent;
+};
+
+const headerVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
 };
 
 export default function ProjectsHomeSectionHeader({ locale = "en" }: Props) {
   const content = projectsContent[locale]?.section || projectsContent.en.section;
 
   return (
-    <section className="w-full py-8 sm:py-12 md:py-16 bg-background">
-      <div className="max-w-screen-lg mx-auto px-4 sm:px-6 md:px-8 text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold  bg-clip-text dark:text-gray-400 mb-2">
-          {content.title}
-        </h1>
-        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold dark:text-gray-400 mb-4">
-          {content.subtitle}
-        </h2>
-        <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-          {content.description}
-        </p>
-      </div>
-    </section>
+    <div className="w-full max-w-3xl mx-auto text-center mb-10">
+      <motion.h1
+      // @ts-ignore
+        variants={headerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-clip-text dark:text-gray-100 mb-2"
+      >
+        {content.title}
+      </motion.h1>
+      <motion.h2
+            // @ts-ignore
+
+        variants={headerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="text-lg sm:text-xl md:text-2xl font-semibold dark:text-gray-400 mb-4"
+      >
+        {content.subtitle}
+      </motion.h2>
+      <motion.p
+            // @ts-ignore
+
+        variants={headerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
+      >
+        {content.description}
+      </motion.p>
+    </div>
   );
 }

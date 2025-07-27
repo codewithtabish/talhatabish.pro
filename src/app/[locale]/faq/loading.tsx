@@ -12,7 +12,7 @@ export default function Loading() {
         md:max-w-screen-md
         lg:max-w-screen-lg
         xl:max-w-screen-xl
-        2xl:max-w-screen-2xl
+        2xl:max-w-6xl
         mx-auto
         px-2
         sm:px-4
@@ -25,51 +25,42 @@ export default function Loading() {
         relative
       "
     >
-      {/* Banner Image Skeleton */}
-      <div className="w-full max-w-3xl mx-auto aspect-[16/9] rounded-2xl overflow-hidden shadow-lg mb-10">
-        <Skeleton className="w-full h-full rounded-2xl" />
+      {/* Badge Skeleton */}
+      <div className="flex justify-center mb-4">
+        <Skeleton className="h-7 w-20 rounded-full" />
       </div>
 
       {/* Title Skeleton */}
-      <Skeleton className="h-12 w-2/3 mx-auto mt-2 mb-4 rounded" />
+      <Skeleton className="h-12 w-2/3 mx-auto mb-3 rounded" />
 
-      {/* Short Description Skeleton */}
-      <Skeleton className="h-6 w-1/2 mx-auto mb-8 rounded" />
+      {/* Subtitle Skeleton */}
+      <Skeleton className="h-6 w-3/4 mx-auto mb-10 rounded" />
 
-      {/* Main Content Skeleton */}
-      <div className="mb-10 space-y-4 max-w-4xl mx-auto">
-        <Skeleton className="h-4 w-full rounded" />
-        <Skeleton className="h-4 w-5/6 rounded" />
-        <Skeleton className="h-4 w-2/3 rounded" />
-        <Skeleton className="h-4 w-1/2 rounded" />
-      </div>
-
-      {/* Tech Stack & Keywords Skeleton */}
-      <div className="flex flex-wrap gap-2 mb-8 justify-center">
-        {[...Array(5)].map((_, i) => (
-          <Skeleton key={i} className="h-6 w-20 rounded" />
+      {/* FAQ Items Skeleton */}
+      <div className="space-y-4 max-w-2xl mx-auto">
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            className="rounded-lg border border-border/60 bg-card/30 shadow-sm"
+          >
+            <div className="flex items-center justify-between px-6 py-4">
+              <Skeleton className="h-5 w-2/3 rounded" />
+              <Skeleton className="h-5 w-5 rounded-full" />
+            </div>
+          </div>
         ))}
       </div>
 
-      {/* Links Skeleton */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-8 justify-center">
-        <Skeleton className="h-8 w-32 rounded" />
-        <Skeleton className="h-8 w-32 rounded" />
-      </div>
-
-      {/* Separator Skeleton */}
-      <div className="flex justify-center mb-8">
-        <Skeleton className="w-1/2 h-[4px] rounded" />
-      </div>
-
-      {/* Share Heading Skeleton */}
-      <Skeleton className="h-6 w-1/4 mx-auto mb-4 rounded" />
-
-      {/* Share Buttons Skeleton */}
-      <div className="flex justify-center gap-4">
-        {[...Array(3)].map((_, i) => (
-          <Skeleton key={i} className="h-10 w-10 rounded-full" />
-        ))}
+      {/* Contact Support Skeleton */}
+      <div className="mx-auto mt-12 max-w-md rounded-lg p-6 text-center">
+        <div className="mb-4 flex items-center justify-center">
+          <Skeleton className="h-8 w-8 rounded-full" />
+        </div>
+        <Skeleton className="h-5 w-1/2 mx-auto mb-2 rounded" />
+        <Skeleton className="h-4 w-2/3 mx-auto mb-4 rounded" />
+        <div className="flex justify-center">
+          <Skeleton className="h-10 w-32 rounded-md" />
+        </div>
       </div>
     </div>
   );
