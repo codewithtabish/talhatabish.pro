@@ -65,7 +65,7 @@ export default function MobileNavbar({ locale, children }: MobileNavbarProps) {
 
   return (
     <nav
-      className="md:hidden fixed top-0 left-0 w-full z-40 bg-white/90  border-b border-gray-200 dark:border-zinc-800 backdrop-blur"
+      className="md:hidden fixed top-0 left-0 w-full z-40 bg-white/90 dark:bg-none  border-b border-gray-200 dark:border-zinc-800 backdrop-blur"
       dir="ltr" // Force LTR for navbar, even if page is RTL
     >
       <div className="flex flex-row items-center justify-between px-4 py-2 w-full">
