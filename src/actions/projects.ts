@@ -35,7 +35,6 @@ export async function getProjects(
     const res = await fetch(url, {
       // Avoid using force-cache so that revalidateTag works
       next: {
-        tags: ['projects'],
         
         revalidate: 2592000, // 30 days in seconds
 

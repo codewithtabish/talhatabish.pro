@@ -25,7 +25,7 @@ export default async function GalleryWrapper() {
   return (
     <>
     {/* <GallerySection/> */}
-    <ClientGallery items={galleryItems}/>
+    {/* <ClientGallery items={galleryItems}/> */}
     </>
   )
 

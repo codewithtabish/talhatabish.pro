@@ -5,6 +5,7 @@ import Image from 'next/image';
 import React from 'react';
 import { Ghost } from "lucide-react";
 import { resolveMetadataFromBlogSEO } from '@/lib/seo/single-blog-seo';
+import BackButtonComp from '@/components/custom/(general)/back-comp';
 
 // --- Localized "not found" messages ---
 const notFoundMessages: Record<string, { title: string; desc: string }> = {
@@ -112,6 +113,8 @@ export default async function SingleBlogSlug({
         itemScope
         itemType="https://schema.org/BlogPosting"
       >
+                    <BackButtonComp locale={locale}/>
+        
         {/* Responsive Banner Image */}
         {single_blog?.blogBannerImage && (
           <div className="w-full aspect-[16/9] sm:aspect-[16/8] md:aspect-[16/7] relative rounded-xl overflow-hidden shadow mb-8">

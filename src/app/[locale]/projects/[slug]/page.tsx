@@ -5,6 +5,7 @@ import ProjectRichRenderWrapper from '@/components/custom/(general)/project-rich
 import Image from 'next/image';
 import { resolveMetadataFromSEO } from '@/utils/seo-utils';
 import ShareButtons from '@/components/custom/(general)/share-button';
+import BackButtonComp from '@/components/custom/(general)/back-comp';
 
 type Props = {
   params: Promise<{ slug: string; locale: string }>;
@@ -86,6 +87,8 @@ export default async function SingleProjectBySlug({ params }: Props) {
           relative
         "
       >
+                            <BackButtonComp locale={locale}/>
+        
         {/* ✅ Responsive Banner Image */}
         {project.bannerImage && (
           <div className="w-full aspect-[16/9] sm:aspect-[16/8] md:aspect-[16/7] relative rounded-xl overflow-hidden shadow mb-8">
