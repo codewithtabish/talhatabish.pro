@@ -67,6 +67,7 @@ export async function getProjectBySlug(
       return { error: 'Project not found.' };
     }
     const item = json.data[0];
+    
     const project: Project = {
       id: item.id,
       title: item.title?.trim() || '',

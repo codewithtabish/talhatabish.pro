@@ -87,7 +87,7 @@ export default async function HomeProjectsGrid({
   // Show only first 4 if isHome is true, otherwise show all
   const projectsToShow = isHome ? data.slice(0, 4) : data;
 
-  console.log('Projects to show:', projectsToShow);
+  // console.log('Projects to show:', projectsToShow);
 
   return (
     <section

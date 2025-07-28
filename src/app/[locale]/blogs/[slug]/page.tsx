@@ -42,9 +42,10 @@ const notFoundMessages: Record<string, { title: string; desc: string }> = {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
   const single_blog = await getBlogBySlug(slug, locale);
+  console.log("Single seo is ",single_blog?.blogSeo)
 
   if (!single_blog?.blogSeo) return {};
-  return resolveMetadataFromBlogSEO(single_blog.blogSeo);
+  return resolveMetadataFromBlogSEO(single_blog?.blogSeo);
 }
 
 export default async function SingleBlogSlug({
@@ -54,6 +55,11 @@ export default async function SingleBlogSlug({
 }) {
   const { locale, slug } = await params;
   const single_blog = await getBlogBySlug(slug, locale);
+    console.log("Single seo is after ",single_blog?.blogSeo)
+
+
+  
+  
 
   if (!single_blog) {
     const msg = notFoundMessages[locale] || notFoundMessages["en"];

@@ -82,7 +82,7 @@ export async function getAllBlogs(locale: string): Promise<Blog[]> {
     let json: BlogsResponse;
     try {
       json = await res.json();
-      console.log('THE RESPONSE IN SERVER ACTION IS', json);
+      // console.log('THE RESPONSE IN SERVER ACTION IS', json);
     } catch (err) {
       throw new Error('Invalid JSON response from server');
     }
