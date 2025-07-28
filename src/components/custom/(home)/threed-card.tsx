@@ -85,7 +85,8 @@ function ThreeDCard({ content }: ThreeDCardProps) {
           switchView={true}
         >
           <Image
-            src={content.cardImage || "/logos/dev-1.jpg"}
+          src='/gallery/card.webp'
+            // src={content.cardImage || "/logos/dev-1.jpg"}
             width={500}
             height={320}
             alt={content.cardTitle || "Portfolio Card"}

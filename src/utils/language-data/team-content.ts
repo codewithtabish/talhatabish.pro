@@ -9,7 +9,7 @@ const teamContent = {
         name: "Talha Tabish",
         role: "Founder & CEO",
         bio: "Visionary founder, Android & React Native developer, Next.js and backend expert, DevOps engineer, game developer, and AI enthusiast. Leading CodeWithTabish to new heights.",
-        imageUrl: "/team/talha.jpg",
+        imageUrl: "/team/talha.webp",
         location: "Pakistan",
         socialLinks: [
           { platform: "github", url: "https://github.com/codewithtabish" },
@@ -21,7 +21,7 @@ const teamContent = {
         name: "Sudais Azlan",
         role: "AI Expert & Engineer",
         bio: "AI specialist and engineer, passionate about building intelligent systems and innovative solutions for real-world problems.",
-        imageUrl: "/team/sudais.jpg",
+        imageUrl: "/team/sudais.webp",
         location: "Pakistan",
         socialLinks: [
           { platform: "github", url: "https://github.com/sudaisazlan" },
@@ -49,7 +49,7 @@ const teamContent = {
         name: "طلحہ تابش",
         role: "بانی اور سی ای او",
         bio: "ویژنری بانی، اینڈرائیڈ اور ری ایکٹ نیٹو ڈویلپر، نیکسٹ جے ایس اور بیک اینڈ ایکسپرٹ، ڈیواپس انجینئر، گیم ڈویلپر اور AI کے شوقین۔ کوڈ ود طلحہ تابش کو نئی بلندیوں تک لے جا رہے ہیں۔",
-        imageUrl: "/team/talha.jpg",
+        imageUrl: "/team/talha.webp",
         location: "پاکستان",
         socialLinks: [
           { platform: "github", url: "https://github.com/codewithtabish" },
@@ -61,7 +61,7 @@ const teamContent = {
         name: "سدیس اذلان",
         role: "AI ماہر اور انجینئر",
         bio: "AI کے ماہر اور انجینئر، جو ذہین سسٹمز اور جدید حل بنانے کے شوقین ہیں۔",
-        imageUrl: "/team/sudais.jpg",
+        imageUrl: "/team/sudais.webp",
         location: "پاکستان",
         socialLinks: [
           { platform: "github", url: "https://github.com/sudaisazlan" },
@@ -89,7 +89,7 @@ const teamContent = {
         name: "طلحة تابش",
         role: "المؤسس والرئيس التنفيذي",
         bio: "مؤسس ذو رؤية، مطور أندرويد وReact Native، خبير Next.js وBack-end، مهندس DevOps، مطور ألعاب وخبير في الذكاء الاصطناعي. يقود CodeWithTabish نحو آفاق جديدة.",
-        imageUrl: "/team/talha.jpg",
+        imageUrl: "/team/talha.webp",
         location: "باكستان",
         socialLinks: [
           { platform: "github", url: "https://github.com/codewithtabish" },
@@ -101,7 +101,7 @@ const teamContent = {
         name: "سديس أزلان",
         role: "خبير ومهندس الذكاء الاصطناعي",
         bio: "متخصص في الذكاء الاصطناعي ومهندس شغوف ببناء أنظمة ذكية وحلول مبتكرة للمشاكل الواقعية.",
-        imageUrl: "/team/sudais.jpg",
+        imageUrl: "/team/sudais.webp",
         location: "باكستان",
         socialLinks: [
           { platform: "github", url: "https://github.com/sudaisazlan" },
@@ -129,7 +129,7 @@ const teamContent = {
         name: "Talha Tabish",
         role: "Fondateur & PDG",
         bio: "Fondateur visionnaire, développeur Android & React Native, expert Next.js et backend, ingénieur DevOps, développeur de jeux et passionné d'IA. Il mène CodeWithTabish vers de nouveaux sommets.",
-        imageUrl: "/team/talha.jpg",
+        imageUrl: "/team/talha.webp",
         location: "Pakistan",
         socialLinks: [
           { platform: "github", url: "https://github.com/codewithtabish" },
@@ -141,7 +141,7 @@ const teamContent = {
         name: "Sudais Azlan",
         role: "Expert IA & Ingénieur",
         bio: "Spécialiste de l'IA et ingénieur, passionné par la création de systèmes intelligents et de solutions innovantes.",
-        imageUrl: "/team/sudais.jpg",
+        imageUrl: "/team/sudais.webp",
         location: "Pakistan",
         socialLinks: [
           { platform: "github", url: "https://github.com/sudaisazlan" },
@@ -169,7 +169,7 @@ const teamContent = {
         name: "Talha Tabish",
         role: "创始人兼首席执行官",
         bio: "有远见的创始人，Android 和 React Native 开发者，Next.js 和后端专家，DevOps 工程师，游戏开发者和 AI 爱好者。带领 CodeWithTabish 迈向新高度。",
-        imageUrl: "/team/talha.jpg",
+        imageUrl: "/team/talha.webp",
         location: "巴基斯坦",
         socialLinks: [
           { platform: "github", url: "https://github.com/codewithtabish" },
@@ -181,7 +181,7 @@ const teamContent = {
         name: "Sudais Azlan",
         role: "AI 专家与工程师",
         bio: "AI 专家和工程师，热衷于构建智能系统和创新解决方案。",
-        imageUrl: "/team/sudais.jpg",
+        imageUrl: "/team/sudais.webp",
         location: "巴基斯坦",
         socialLinks: [
           { platform: "github", url: "https://github.com/sudaisazlan" },
@@ -209,7 +209,7 @@ const teamContent = {
         name: "Talha Tabish",
         role: "Gründer & CEO",
         bio: "Visionärer Gründer, Android- & React Native-Entwickler, Next.js- und Backend-Experte, DevOps-Ingenieur, Spieleentwickler und KI-Enthusiast. Führt CodeWithTabish zu neuen Höhen.",
-        imageUrl: "/team/talha.jpg",
+        imageUrl: "/team/talha.webp",
         location: "Pakistan",
         socialLinks: [
           { platform: "github", url: "https://github.com/codewithtabish" },
@@ -221,7 +221,7 @@ const teamContent = {
         name: "Sudais Azlan",
         role: "KI-Experte & Ingenieur",
         bio: "KI-Spezialist und Ingenieur, der intelligente Systeme und innovative Lösungen für reale Probleme entwickelt.",
-        imageUrl: "/team/sudais.jpg",
+        imageUrl: "/team/sudais.webp",
         location: "Pakistan",
         socialLinks: [
           { platform: "github", url: "https://github.com/sudaisazlan" },
@@ -249,7 +249,7 @@ const teamContent = {
         name: "Talha Tabish",
         role: "創設者兼CEO",
         bio: "ビジョナリーな創設者。Android・React Native開発者、Next.js・バックエンドのエキスパート、DevOpsエンジニア、ゲーム開発者、AI愛好家。CodeWithTabishを新たな高みへ導く。",
-        imageUrl: "/team/talha.jpg",
+        imageUrl: "/team/talha.webp",
         location: "パキスタン",
         socialLinks: [
           { platform: "github", url: "https://github.com/codewithtabish" },
@@ -261,7 +261,7 @@ const teamContent = {
         name: "Sudais Azlan",
         role: "AIエキスパート＆エンジニア",
         bio: "AIの専門家でありエンジニア。インテリジェントなシステムと革新的なソリューションの構築に情熱を注ぐ。",
-        imageUrl: "/team/sudais.jpg",
+        imageUrl: "/team/sudais.webp",
         location: "パキスタン",
         socialLinks: [
           { platform: "github", url: "https://github.com/sudaisazlan" },
@@ -289,7 +289,7 @@ const teamContent = {
         name: "Talha Tabish",
         role: "Fundador y CEO",
         bio: "Fundador visionario, desarrollador de Android y React Native, experto en Next.js y backend, ingeniero DevOps, desarrollador de juegos y entusiasta de la IA. Liderando CodeWithTabish hacia nuevas alturas.",
-        imageUrl: "/team/talha.jpg",
+        imageUrl: "/team/talha.webp",
         location: "Pakistán",
         socialLinks: [
           { platform: "github", url: "https://github.com/codewithtabish" },
@@ -301,7 +301,7 @@ const teamContent = {
         name: "Sudais Azlan",
         role: "Experto e Ingeniero en IA",
         bio: "Especialista en IA e ingeniero, apasionado por construir sistemas inteligentes y soluciones innovadoras.",
-        imageUrl: "/team/sudais.jpg",
+        imageUrl: "/team/sudais.webp",
         location: "Pakistán",
         socialLinks: [
           { platform: "github", url: "https://github.com/sudaisazlan" },

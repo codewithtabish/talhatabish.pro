@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Github, Twitter, Linkedin, Facebook, Instagram, Mail } from "lucide-react";
 import footerContent from "@/utils/language-data/footer-content";
 import ThemeToggleButton from "../ui/theme-toggle-button";
+import FooterQr from "../custom/footer-qr";
 // import ThemeToggleIconToggle from "../custom/(general)/theme-toggle";
 
 const SOCIALS = [
@@ -134,6 +135,7 @@ export default function Footer({ locale = "en" }: Props) {
                 </li>
               )}
             </ul>
+            <FooterQr locale={locale}/>
           </div>
         </div>
         <div className="flex justify-end">

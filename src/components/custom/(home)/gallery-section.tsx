@@ -23,10 +23,13 @@ const sectionVariants = {
 
 // Self-contained images array
 const images = [
-  { src: "/team/talha.jpg", alt: "Image 1" },
-  { src: "/team/ayesha.jpg", alt: "Image 2" },
-  { src: "/team/sudais.jpg", alt: "Image 3" },
-  { src: "/team/t2.jpeg", alt: "Image 4" },
+  { src: "/gallery/card.webp", alt: "Image 1" },
+  { src: "/gallery/baba.webp", alt: "Image 2" },
+  { src: "/gallery/pic-2.webp", alt: "Image 3" },
+  { src: "/gallery/asad.webp", alt: "Image 3" },
+  { src: "/gallery/pic-3.webp", alt: "Image 3" },
+  { src: "/gallery/g1.webp", alt: "Image 3" },
+  // { src: "/team/d1.webp", alt: "Image 4" },
 ];
 
 const GallerySection: React.FC<Props> = ({ locale }) => {
